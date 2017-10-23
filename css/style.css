@@ -4237,6 +4237,18 @@ h1 small {
     transform: translate(-50%, -50%);
 }
 
+.editbtn {
+	z-index: 5;
+    right: 6px;
+    top: 15px;
+    position: absolute;
+}
+
+.dropzone {
+	border: 2px dashed #0087F7;
+    border-radius: 5px;
+    background: white;
+}
 
 /*Responsive*/
 @media (min-width:1700px){
