@@ -36,6 +36,7 @@
                 <h4 class="modal-title" id="myModalLabel">Modal title</h4>
             </div>
         <div class="modal-body">
+            <button type="button" class="btn btn-primary" id="imgsubbutt">Save changes</button>
             <form action="/" method="post" class="dropzone" id="my-awesome-dropzone">
                 <div class="fallback">
                     <input type="file" type="file" multiple=""/>
@@ -84,12 +85,12 @@ var myDropzone = new Dropzone("#my-awesome-dropzone", {
     acceptedFiles: "image/*",
     maxFiles: 1,
     init : function () {
-        var mokFile= {name : "test.png",size : "1362"}
+        var mokFile= {name : "img/test.png",size : "1362"}
 
         this.options.addedfile.call(this,mokFile);
         this.files.push(mokFile);
 
-        this.options.thumbnail.call(this,mokFile,"test.png");
+        this.options.thumbnail.call(this,mokFile,"img/test.png");
     }
 });
 

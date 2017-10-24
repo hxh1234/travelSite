@@ -4250,6 +4250,20 @@ h1 small {
     background: white;
 }
 
+.dropzone .dz-preview {
+	display: table;
+	margin: 0 auto;
+}
+
+.dropzone .dz-preview .dz-image {
+	width: 100%;
+	height: 100%;
+}
+
+.modal .form-horizontal .control-label {
+	text-align: left;
+}
+
 /*Responsive*/
 @media (min-width:1700px){
 	.height200 {

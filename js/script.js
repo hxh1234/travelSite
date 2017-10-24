@@ -291,6 +291,16 @@ $('#maps').locationpicker({
 
 });
 
+$(function () {
+    $('#modal-description-date').datetimepicker({
+        viewMode: 'years',
+        format: 'DD-MM-YYYY',
+        minDate: Date.now()
+    });
+});
+
+
 function resizeInput() {
     $(this).attr('size', $(this).val().length);
 }
+

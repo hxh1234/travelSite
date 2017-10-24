@@ -21,6 +21,8 @@
 <!-- Animate CSS -->
 <link rel="stylesheet" href="css/animate.css">
 
+<!-- datetimepicker CSS -->
+<link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
 
 <!-- Theme CSS -->
 <link href="css/style.css" rel="stylesheet">
@@ -72,7 +74,7 @@
             <div class="over" data-opacity="0.2" data-color="#000"></div>
 
             <div class="editbtn" data-toggle="modal" data-target="#introModal">      
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+                <button type="button" class="btn btn-rounded btn-default"><span class="glyphicon glyphicon-edit"></span> Edit</button>
             </div>
 
             <div class="into_back image_bck" data-image="images/background.jpg"></div>
@@ -92,8 +94,8 @@
 <!--Welcome-->
 <section class="section_description boxes simple_title text-center" id="welcome">
     <h4 class="sml_abs_title in"><span class="countdown" data-year="2017" data-month="12" data-day="24"></span></h4>
-    <div class="editbtn">      
-        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+    <div class="editbtn" data-toggle="modal" data-target="#descriptionModal">      
+        <button type="button" class="btn btn-rounded btn-default"><span class="glyphicon glyphicon-edit"></span> Edit</button>
     </div>
     <div class="container-fluid">
         <div class="row">
@@ -148,8 +150,8 @@
         <div class="row">
 
             <div class="col-md-6 bordered_block no-padding gallery">
-                <div class="editbtn">      
-                    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+                <div class="editbtn" data-toggle="modal" data-target="#galleryModal">      
+                    <button type="button" class="btn btn-rounded btn-default"><span class="glyphicon glyphicon-edit"></span> Edit</button>
                 </div>
 
                 <div class="col-sm-6 post-snippet masonry-item no-padding popup-gallery">
@@ -173,8 +175,8 @@
 
 
             <div class="col-md-6 bordered_block no-padding maps-section">
-                <div class="editbtn">      
-                    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+                <div class="editbtn" data-toggle="modal" data-target="#mapsModal">      
+                    <button type="button" class="btn btn-rounded btn-default"><span class="glyphicon glyphicon-edit"></span> Edit</button>
                 </div>
                 <div class="col-sm-6 post-snippet masonry-item no-padding maps">
                     <a href="javascript:void(0)" >
@@ -199,8 +201,8 @@
 
 <!-- others -->
 <section class="boxes  text-center" id="others">
-    <div class="editbtn">      
-        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+    <div class="editbtn" data-toggle="modal" data-target="#othersModal">      
+        <button type="button" class="btn btn-rounded btn-default"><span class="glyphicon glyphicon-edit"></span> Edit</button>
     </div>
     <div class="container-fluid">
         <div class="row">
@@ -229,8 +231,8 @@
 <!-- Categories-->
 <section class="boxes" id="categories">
     <h4 class="sml_abs_title in">Categories</h4>
-    <div class="editbtn">      
-        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+    <div class="editbtn" data-toggle="modal" data-target="#categoriesModal">      
+        <button type="button" class="btn btn-rounded btn-default"><span class="glyphicon glyphicon-edit"></span> Edit</button>
     </div>
     <div class="container-fluid">
         
@@ -354,11 +356,34 @@
 <!-- Modal -->
 
 <!-- Intro -->
-<div class="modal fade" id="introModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="introModal" tabindex="-1" role="dialog" aria-labelledby="introModal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-body">
-                <form action="/" method="post" class="dropzone" id="intro-awesome-dropzone">
+
+                <div class="bs-callout " id="callout-help-text-accessibility">
+                    <div class="form-horizontal">
+                        <div class="form-group  form-group-sm">
+                            <label class="col-sm-2 control-label" for="modal-intro-place">Place</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" type="text" id="modal-intro-place" placeholder="add a remarkable place..."/>
+                            </div>
+                        </div>
+                        <div class="form-group  form-group-sm">
+                            <label class="col-sm-2 control-label" for="modal-intro-city">City</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" type="text" id="modal-intro-city" placeholder="add city..."/>
+                            </div>
+                        </div>
+                        <div class="form-group  form-group-sm">
+                            <label class="col-sm-2 control-label" for="modal-intro-slogan">Slogan </label>
+                            <div class="col-sm-10">
+                                <input class="form-control" type="text" id="modal-intro-slogan" placeholder="add sloan..."/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dropzone" id="intro-awesome-dropzone">
                     <div class="fallback">
                         <input type="file" type="file" multiple=""/>
                     </div>
@@ -366,7 +391,52 @@
                         Drop files here to upload Background image.<br />
                         <span class="note needsclick"><strong>(or click)</strong></span>
                       </div>
-                </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary save">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- description -->
+<div class="modal fade" id="descriptionModal" tabindex="-1" role="dialog" aria-labelledby="descriptionModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+
+                <div class="bs-callout " id="callout-help-text-accessibility">
+                    <div class="form-horizontal">
+                        <div class="form-group  form-group-sm">
+                            <label class="col-sm-2 control-label" for="modal-description-place">Place</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" rows="3" id="modal-description-place" placeholder="add a remarkable place..."></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group  form-group-sm">
+                            <label class="col-sm-2 control-label" for="modal-description-date">Date</label>
+                            <div class="col-sm-10">
+                                <div class='input-group date' id='modal-description-date'>
+                                    <input type='text' class="form-control" />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group  form-group-sm">
+                            <label class="col-sm-2 control-label" for="modal-duration-slogan">Duration </label>
+                            <div class="col-sm-10">
+                                <div class="input-group">
+                                    <input type="text" id="modal-duration-slogan" class="form-control" placeholder="add your trip duration..." aria-describedby="basic-days">
+                                    <span class="input-group-addon" id="basic-days">Days</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -405,6 +475,10 @@
 
 <script src="js/locationpicker.jquery.min.js"></script>
 
+<!-- datepicker JS -->
+<script src="js/moment.min.js"></script>
+<script src="js/bootstrap-datetimepicker.min.js"></script>
+
 <!-- Dropzone -->
 <script src="js/dropzone.js"></script>
 <!-- Theme JS -->
@@ -420,14 +494,16 @@ var myDropzone = new Dropzone("#intro-awesome-dropzone", {
     autoProcessQueue: false,
     paramName: "file", // The name that will be used to transfer the file
     addRemoveLinks: true,
-    dictCancelUpload: "cancel upload",
-    dictRemoveFile: "removee",
+    dictCancelUpload: "Cancel upload",
+    dictRemoveFile: "Remove",
     dictCancelUploadConfirmation: "Confirme canceltion",
     maxFilesize: 10, // MB
     parallelUploads: 5,
     uploadMultiple: false,
     acceptedFiles: "image/*",
     maxFiles: 1,
+    thumbnailWidth: 200,
+    thumbnailHeight: 200,
     init : function () {
         var mokFile= {name : "test.png",size : "1362"}
         this.on("maxfilesexceeded", function(file) {
