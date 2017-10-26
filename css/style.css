@@ -4244,7 +4244,7 @@ h1 small {
     position: absolute;
 }
 
-#introModal .dropzone {
+.dropzone {
 	border: 2px dashed #0087F7;
     border-radius: 5px;
     background: white;
@@ -4265,8 +4265,12 @@ h1 small {
 	height: 100%;
 }
 
-.modal .form-horizontal .control-label {
+#modal .form-horizontal .control-label {
 	text-align: left;
+}
+
+#modal-others-categories .btn, .modal-description-age .btn{
+	margin-bottom:2px 
 }
 
 /*Responsive*/

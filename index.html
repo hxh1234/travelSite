@@ -231,9 +231,6 @@
 <!-- Categories-->
 <section class="boxes" id="categories">
     <h4 class="sml_abs_title in">Categories</h4>
-    <div class="editbtn" data-toggle="modal" data-target="#categoriesModal">      
-        <button type="button" class="btn btn-rounded btn-default"><span class="glyphicon glyphicon-edit"></span> Edit</button>
-    </div>
     <div class="container-fluid">
         
         <div class="row">
@@ -443,19 +440,19 @@
                         	<label class="col-sm-2 control-label" for="modal-description-age">Age</label>
                             <div id="modal-description-age" class="btn-group col-sm-10" data-toggle="buttons">
 								<label class="btn btn-default btn-rounded">
-									<input type="radio" name="options" id="age" autocomplete="off"> +3
+									<input type="radio" name="age" data-value="3" autocomplete="off"> +3
 								</label>
 								<label class="btn btn-default btn-rounded">
-									<input type="radio" name="options" id="age" autocomplete="off"> +5
+									<input type="radio" name="age" data-value="5" autocomplete="off"> +5
 								</label>
 								<label class="btn btn-default btn-rounded">
-									<input type="radio" name="options" id="age" autocomplete="off"> +12
+									<input type="radio" name="age" data-value="12" autocomplete="off"> +12
 								</label>
 								<label class="btn btn-default btn-rounded">
-									<input type="radio" name="options" id="age" autocomplete="off"> +18
+									<input type="radio" name="age" data-value="18" autocomplete="off"> +18
 								</label>
 								<label class="btn btn-default btn-rounded active">
-									<input type="radio" name="options" id="age" autocomplete="off" checked> All
+									<input type="radio" name="age" data-value="" autocomplete="off" checked> All
 								</label>
 							</div>
                         </div>
@@ -537,6 +534,53 @@
     </div>
 </div>
 
+<!-- Othres -->
+<div class="modal fade" id="othersModal" tabindex="-1" role="dialog" aria-labelledby="othersModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="bs-callout " id="callout-help-text-accessibility">
+                    <div class="form-horizontal">
+                        <div class="form-group  form-group-sm">
+                            <label class="col-sm-2 control-label" for="modal-others-desc">Text</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" rows="6" id="modal-othres-desc" placeholder="add a description..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bs-callout " id="callout-help-text-accessibility">
+                    <div class="form-horizontal">
+                        <div class="form-group  form-group-sm">
+                        	<label class="col-sm-2 control-label" for="modal-others-categories">Categorie</label>
+                            <div id="modal-others-categories" class="btn-group col-sm-10" data-toggle="buttons">
+								<label class="btn btn-default btn-rounded">
+									<input type="checkbox" name="cat[]" data-value="Outdoor" autocomplete="off"> Outdoor
+								</label>
+								<label class="btn btn-default btn-rounded">
+									<input type="checkbox" name="categories[]" data-value="Food and Drinks" autocomplete="off"> Food and Drinks
+								</label>
+								<label class="btn btn-default btn-rounded">
+									<input type="checkbox" name="categories[]" data-value="Leisure" autocomplete="off"> Leisure
+								</label>
+								<label class="btn btn-default btn-rounded">
+									<input type="checkbox" name="categories[]" data-value="Museums" autocomplete="off"> Museums
+								</label>
+								<label class="btn btn-default btn-rounded">
+									<input type="checkbox" name="categories[]" data-value="Nature Family and kids" autocomplete="off"> Nature Family and kids
+								</label>
+							</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary save">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 </div>
 <!-- Page End -->

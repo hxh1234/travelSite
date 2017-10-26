@@ -233,18 +233,6 @@ $(window).load(function(){
 });
 
 
-function resizeInput() {
-    $(this).attr('size', $(this).val().length);
-}
-
-$(".maps-section a").hover(function() {
-  $(' .maps-section input[type="text"]')
-    // event handler
-    .keyup(resizeInput)
-    // resize on page load
-    .each(resizeInput);
-});
-
  /*Boxes AutoHeight*/
 function setEqualHeight(columns)
 {
@@ -263,6 +251,21 @@ function setEqualHeight(columns)
 columns.height(tallestcolumn);
 }
 
+function resizeInput() {
+    $(this).attr('size', $(this).val().length);
+}
+
+$(".maps-section a").hover(function() {
+  $(' .maps-section input[type="text"]')
+    // event handler
+    .keyup(resizeInput)
+    // resize on page load
+    .each(resizeInput);
+});
+
+
+
+//Maps
 function updateControls(addressComponents) {
     $('.maps-street1').text(addressComponents.addressLine1);
     $('.maps-city').text(addressComponents.city);
@@ -318,8 +321,8 @@ $('#maps').locationpicker({
     enableAutocomplete: true,
     markerIcon: 'images/marker.png',
     onchanged: function (currentLocation, radius, isMarkerDropped) {
-    var addressComponents = $(this).locationpicker('map').location.addressComponents;
-    updateControls(addressComponents);
+	    var addressComponents = $(this).locationpicker('map').location.addressComponents;
+	    updateControls(addressComponents);
     },
     oninitialized: function(component) {
         var addressComponents = $(component).locationpicker('map').location.addressComponents;
@@ -328,6 +331,7 @@ $('#maps').locationpicker({
 
 });
 
+/* Edit */
 
 $('#editMaps').locationpicker({
 	location: {
@@ -349,7 +353,7 @@ $('#mapsModal').on('shown.bs.modal', function () {
 	$('#editMaps').locationpicker('autosize');
 });
 
-
+//datepicker
 
 $(function () {
     $('#modal-description-date').datetimepicker({
@@ -360,11 +364,19 @@ $(function () {
 });
 
 
+var edit_trip_intro_url = "edit/trip/introduction"; //POST
+var edit_trip_desc_url = "edit/trip/description"; //POST
+var edit_trip_gallery_url = "edit/trip/galleries" ;//POST
+var edit_trip_maps_url = "edit/trip/maps"; //POST
+var delete_image_url = "delete/image"; // DELETE
+var edit_trip_others_url = "edit/trip/others"; //POST
+
+//DropZone
 
 Dropzone.autoDiscover = false;
 
 var myIntroDropzone = new Dropzone("#intro-awesome-dropzone", {
-    url: "http://www.mocky.io/v2/59ecdd653100001a02d24e65",                        
+	url: edit_trip_intro_url,                        
     autoProcessQueue: false,
     paramName: "file", // The name that will be used to transfer the file
     addRemoveLinks: true,
@@ -390,6 +402,13 @@ var myIntroDropzone = new Dropzone("#intro-awesome-dropzone", {
             console.log(file);
             console.log(file.upload.filename);
         });
+
+        this.on("sending", function(file, xhr, formData) { 
+			formData.append("place", $("#modal-intro-place").val());
+			formData.append("city", $("#modal-intro-city").val());
+			formData.append("place", $("#modal-intro-place").val());
+			formData.append("slogan", $("#modal-intro-slogan").val());
+		});
     }
 });
 
@@ -399,7 +418,7 @@ $('#introModal .save').click(function(){
 
 Dropzone.autoDiscover = false;
 var myGalleryDropzone = new Dropzone("#gallery-awesome-dropzone", {
-    url: "http://www.mocky.io/v2/59ecdd653100001a02d24e65",                        
+    url: edit_trip_gallery_url,                        
     autoProcessQueue: false,
     paramName: "file", // The name that will be used to transfer the file
     addRemoveLinks: true,
@@ -420,11 +439,11 @@ var myGalleryDropzone = new Dropzone("#gallery-awesome-dropzone", {
 
         });
         thisDropzone.on("removedfile", function(file) {
-			var dataId={"fileName" : file.name}
+			var dataId={"fileName" : file.name};
 			$.ajax({
-				type: 'POST',
-				url: 'http://www.mocky.io/v2/59ecdd653100001a02d24e65',
-				data: dataId,
+				type: 'DELETE',
+				url: delete_image_url,
+				data: dataId
 			});
 		});
     }
@@ -433,3 +452,44 @@ var myGalleryDropzone = new Dropzone("#gallery-awesome-dropzone", {
 $('#galleryModal .save').click(function(){           
     myGalleryDropzone.processQueue();
 });
+
+$('#descriptionModal .save').click(function(){ 
+	var dataToSend={"description" : $("#modal-description-desc").val(),
+					"date" : $("#modal-description-date input").val(),
+					"duration" : $("#modal-description-duration").val(),
+					"age" : $("#modal-description-age input[name='age']:checked").data().value} ;       
+    $.ajax({
+		type: 'POST',
+		url: edit_trip_desc_url,
+		data: dataToSend
+	});
+});
+
+$('#mapsModal .save').click(function(){ 
+	var dataToSend={"latitude" : $("#modal-maps-latitude").val(),
+					"longitude" : $("#modal-maps-longitude").val(),
+					"address" : $("#modal-maps-address").val()
+					};       
+    $.ajax({
+		type: 'POST',
+		url: edit_trip_maps_url,
+		data: dataToSend
+	});
+});
+
+$('#othersModal .save').click(function(){ 
+
+	var dataToSend = { 'categories[]' : [] , "text" : $("#modal-othres-desc").val()};
+	$("#modal-others-categories input:checked").each(function() {
+	  dataToSend['categories[]'].push($(this).data().value);
+	  console.log("data");
+	});
+
+	$.ajax({
+		type: 'POST',
+		url: edit_trip_others_url,
+		data: dataToSend
+	});
+});
+
+
