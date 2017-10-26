@@ -233,8 +233,12 @@ $(window).load(function(){
 });
 
 
+function resizeInput() {
+    $(this).attr('size', $(this).val().length);
+}
+
 $(".maps-section a").hover(function() {
-  $('input[type="text"]')
+  $(' .maps-section input[type="text"]')
     // event handler
     .keyup(resizeInput)
     // resize on page load
@@ -267,19 +271,52 @@ function updateControls(addressComponents) {
     $('.maps-country').text(addressComponents.country);
 }
 
+
+var customStyles = [{
+    "elementType": "geometry",
+    "stylers": [{"hue": "#ff4400"}, {"saturation": -68}, {"lightness": -4}, {"gamma": 0.72}]
+}, {"featureType": "road", "elementType": "labels.icon"}, {
+    "featureType": "landscape.man_made",
+    "elementType": "geometry",
+    "stylers": [{"hue": "#0077ff"}, {"gamma": 3.1}]
+}, {
+    "featureType": "water",
+    "stylers": [{"hue": "#00ccff"}, {"gamma": 0.44}, {"saturation": -33}]
+}, {
+    "featureType": "poi.park",
+    "stylers": [{"hue": "#44ff00"}, {"saturation": -23}]
+}, {
+    "featureType": "water",
+    "elementType": "labels.text.fill",
+    "stylers": [{"hue": "#007fff"}, {"gamma": 0.77}, {"saturation": 65}, {"lightness": 99}]
+}, {
+    "featureType": "water",
+    "elementType": "labels.text.stroke",
+    "stylers": [{"gamma": 0.11}, {"weight": 5.6}, {"saturation": 99}, {"hue": "#0091ff"}, {"lightness": -86}]
+}, {
+    "featureType": "transit.line",
+    "elementType": "geometry",
+    "stylers": [{"lightness": -48}, {"hue": "#ff5e00"}, {"gamma": 1.2}, {"saturation": -23}]
+}, {
+    "featureType": "transit",
+    "elementType": "labels.text.stroke",
+    "stylers": [{"saturation": -64}, {"hue": "#ff9100"}, {"lightness": 16}, {"gamma": 0.47}, {"weight": 2.7}]
+}];
+
 $('#maps').locationpicker({
     location: {
-        latitude: 46.15242437752303,
-        longitude: 2.7470703125
+        latitude: $(".maps-section .maps").data("latitude"),
+		longitude: $(".maps-section .maps").data("longitude")
     },
     radius: 0,
+    styles: customStyles,
     inputBinding: {
         latitudeInput: $('.us3-lat'),
         longitudeInput: $('.us3-lon'),
         locationNameInput: $('.us3-address')
     },
     enableAutocomplete: true,
-
+    markerIcon: 'images/marker.png',
     onchanged: function (currentLocation, radius, isMarkerDropped) {
     var addressComponents = $(this).locationpicker('map').location.addressComponents;
     updateControls(addressComponents);
@@ -291,6 +328,29 @@ $('#maps').locationpicker({
 
 });
 
+
+$('#editMaps').locationpicker({
+	location: {
+		latitude: $(".maps-section .maps").data("latitude"),
+		longitude: $(".maps-section .maps").data("longitude")
+	},
+	radius: 0,
+	styles: customStyles,
+	inputBinding: {
+		latitudeInput: $('#modal-maps-latitude'),
+		longitudeInput: $('#modal-maps-longitude'),
+		locationNameInput: $('#modal-maps-address')
+	},
+	enableAutocomplete: true,
+	markerIcon: 'images/marker.png'
+});
+
+$('#mapsModal').on('shown.bs.modal', function () {
+	$('#editMaps').locationpicker('autosize');
+});
+
+
+
 $(function () {
     $('#modal-description-date').datetimepicker({
         viewMode: 'years',
@@ -300,7 +360,76 @@ $(function () {
 });
 
 
-function resizeInput() {
-    $(this).attr('size', $(this).val().length);
-}
 
+Dropzone.autoDiscover = false;
+
+var myIntroDropzone = new Dropzone("#intro-awesome-dropzone", {
+    url: "http://www.mocky.io/v2/59ecdd653100001a02d24e65",                        
+    autoProcessQueue: false,
+    paramName: "file", // The name that will be used to transfer the file
+    addRemoveLinks: true,
+    dictCancelUpload: "Cancel upload",
+    dictRemoveFile: "Remove",
+    dictCancelUploadConfirmation: "Confirme canceltion",
+    maxFilesize: 10, // MB
+    parallelUploads: 5,
+    uploadMultiple: false,
+    acceptedFiles: "image/*",
+    maxFiles: 1,
+    thumbnailWidth: 200,
+    thumbnailHeight: 200,
+    init : function () {
+        var mokFile= {name : "test.png",size : "1362"}
+        this.on("maxfilesexceeded", function(file) {
+            this.removeAllFiles();
+            this.addFile(file);
+        });
+
+        this.on("addedfile", function(file) {
+            $(".popup-gallery a:first-child img").attr("src", file);
+            console.log(file);
+            console.log(file.upload.filename);
+        });
+    }
+});
+
+$('#introModal .save').click(function(){           
+  myIntroDropzone.processQueue();
+});
+
+Dropzone.autoDiscover = false;
+var myGalleryDropzone = new Dropzone("#gallery-awesome-dropzone", {
+    url: "http://www.mocky.io/v2/59ecdd653100001a02d24e65",                        
+    autoProcessQueue: false,
+    paramName: "file", // The name that will be used to transfer the file
+    addRemoveLinks: true,
+    dictCancelUpload: "Cancel upload",
+    dictRemoveFile: "Remove",
+    dictCancelUploadConfirmation: "Confirme canceltion",
+    maxFilesize: 10, // MB
+    parallelUploads: 5,
+    uploadMultiple: true,
+    acceptedFiles: "image/*",
+    init : function () {
+        thisDropzone = this;
+        $(".gallery .popup-gallery a").each(function( index ) {
+            var mokFile= {name : $( this ).attr('href'),size : $( this ).data('size')};
+            thisDropzone.options.addedfile.call(thisDropzone,mokFile);
+            thisDropzone.files.push(mokFile);
+            thisDropzone.options.thumbnail.call(thisDropzone,mokFile,$( this ).attr('href'));
+
+        });
+        thisDropzone.on("removedfile", function(file) {
+			var dataId={"fileName" : file.name}
+			$.ajax({
+				type: 'POST',
+				url: 'http://www.mocky.io/v2/59ecdd653100001a02d24e65',
+				data: dataId,
+			});
+		});
+    }
+});
+
+$('#galleryModal .save').click(function(){           
+    myGalleryDropzone.processQueue();
+});

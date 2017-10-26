@@ -155,7 +155,7 @@
                 </div>
 
                 <div class="col-sm-6 post-snippet masonry-item no-padding popup-gallery">
-                    <a href="images/build4.jpg" >
+                    <a href="images/build4.jpg" data-size="1500" >
                         <img alt="" src="images/build4.jpg" />
                         <span class="potfolio_txt">
                             <span class="portfolio_cont text-center">
@@ -165,9 +165,9 @@
                             </span>
                         </span>
                     </a>
-                    <a href="images/build1.jpg"></a>
-                    <a href="images/build2.jpg"></a>
-                    <a href="images/build3.jpg"></a>
+                    <a href="images/build1.jpg" data-size="500" ></a>
+                    <a href="images/build2.jpg" data-size="800" ></a>
+                    <a href="images/build3.jpg" data-size="1200" ></a>
 
                 </div>
 
@@ -178,7 +178,7 @@
                 <div class="editbtn" data-toggle="modal" data-target="#mapsModal">      
                     <button type="button" class="btn btn-rounded btn-default"><span class="glyphicon glyphicon-edit"></span> Edit</button>
                 </div>
-                <div class="col-sm-6 post-snippet masonry-item no-padding maps">
+                <div class="col-sm-6 post-snippet masonry-item no-padding maps" data-latitude="33.9715904" data-longitude="-6.849812899999961" >
                     <a href="javascript:void(0)" >
                         <div id="maps" style="width: 100%; height: 400px;"></div>
                         <span class="potfolio_txt">
@@ -317,7 +317,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
-                    <span class="sub">&copy; Copyright 2018 - Anas Ma</span>
+                    <span class="sub">&copy; Copyright 2018 - </span>
                 </div>
                 <div class="col-sm-6 text-right">
                     <ul class="list-inline social-list">
@@ -434,7 +434,7 @@
                             <label class="col-sm-2 control-label" for="modal-description-duration">Duration </label>
                             <div class="col-sm-10">
                                 <div class="input-group">
-                                <input type="number" id="modal-description-duration" class="form-control" placeholder="add your trip duration..." aria-describedby="basic-days" pattern="\d*">
+                                <input type="number" id="modal-description-duration" class="form-control" placeholder="add your trip duration..." aria-describedby="basic-days" pattern="\d*" min="1">
                                     <span class="input-group-addon" id="basic-days">Days</span>
                                 </div>
                             </div>
@@ -454,10 +454,77 @@
 								<label class="btn btn-default btn-rounded">
 									<input type="radio" name="options" id="age" autocomplete="off"> +18
 								</label>
-								<label class="btn btn-default btn-rounded ">
+								<label class="btn btn-default btn-rounded active">
 									<input type="radio" name="options" id="age" autocomplete="off" checked> All
 								</label>
 							</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary save">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Galeries -->
+<div class="modal fade" id="galleryModal" tabindex="-1" role="dialog" aria-labelledby="galleryModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="dropzone" id="gallery-awesome-dropzone">
+                    <div class="fallback">
+                        <input type="file" type="file" multiple=""/>
+                    </div>
+                    <div class="dz-message needsclick">
+                        Drop files here to upload images.<br />
+                        <span class="note needsclick"><strong>(or click)</strong></span>
+                      </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary save">Start uplade</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- maps -->
+<div class="modal fade" id="mapsModal" tabindex="-1" role="dialog" aria-labelledby="mapsModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="bs-callout " id="callout-help-text-accessibility">
+                    <div class="form-horizontal">
+                        <div class="form-group  form-group-sm">
+                            <label class="col-sm-2 control-label" for="modal-maps-address">Address</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" type="text" id="modal-maps-address"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bs-callout bs-callout-danger" id="callout-help-text-accessibility">
+                    <div id="editMaps" style="width: 100%; height: 175px;"></div>
+                </div>
+
+                <div class="bs-callout " id="callout-help-text-accessibility">
+                    <div class="form-horizontal">
+                        
+                        <div class="form-group  form-group-sm">
+                            <label class="col-sm-2 control-label" for="modal-maps-latitude">latitude</label>
+                            <div class="col-sm-4">
+                                <input class="form-control" type="text" id="modal-maps-latitude"/>
+                            </div>
+                            <label class="col-sm-2 control-label" for="modal-maps-longitude">longitude</label>
+                            <div class="col-sm-4">
+                                <input class="form-control" type="text" id="modal-maps-longitude"/>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -509,44 +576,6 @@
 <script src="js/script.js"></script>
 
 <script>
-
-
-Dropzone.autoDiscover = false;
-
-var myDropzone = new Dropzone("#intro-awesome-dropzone", {
-    url: "http://www.mocky.io/v2/59ecdd653100001a02d24e65",                        
-    autoProcessQueue: false,
-    paramName: "file", // The name that will be used to transfer the file
-    addRemoveLinks: true,
-    dictCancelUpload: "Cancel upload",
-    dictRemoveFile: "Remove",
-    dictCancelUploadConfirmation: "Confirme canceltion",
-    maxFilesize: 10, // MB
-    parallelUploads: 5,
-    uploadMultiple: false,
-    acceptedFiles: "image/*",
-    maxFiles: 1,
-    thumbnailWidth: 200,
-    thumbnailHeight: 200,
-    init : function () {
-        var mokFile= {name : "test.png",size : "1362"}
-        this.on("maxfilesexceeded", function(file) {
-            this.removeAllFiles();
-            this.addFile(file);
-        });
-
-        this.on("addedfile", function(file) {
-            $(".popup-gallery a:first-child img").attr("src", file);
-            console.log(file);
-            console.log(file.upload.filename);
-        });
-    }
-});
-
-$('#introModal .save').click(function(){           
-  myDropzone.processQueue();
-});
-
 
 </script>
 

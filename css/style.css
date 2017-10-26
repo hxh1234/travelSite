@@ -4244,18 +4244,23 @@ h1 small {
     position: absolute;
 }
 
-.dropzone {
+#introModal .dropzone {
 	border: 2px dashed #0087F7;
     border-radius: 5px;
     background: white;
 }
 
-.dropzone .dz-preview {
+#introModal .dropzone .dz-preview {
 	display: table;
 	margin: 0 auto;
 }
 
-.dropzone .dz-preview .dz-image {
+#introModal .dropzone .dz-preview .dz-image {
+	width: 100%;
+	height: 100%;
+}
+
+#galleryModal .dropzone .dz-preview .dz-image img {
 	width: 100%;
 	height: 100%;
 }
