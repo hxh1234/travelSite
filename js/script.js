@@ -1,17 +1,5 @@
-﻿(function($) {
-
-	"use strict"; // Start of use strict
-
-	/* Titles Color */
-	$('.intro_text, .simple_stat').each(function(){
-		var color = $(this).attr('data-color');
-		if (color){
-			$(this).find('b').css('color', color);
-		}
-	});
-
-	/* Section Background */
-	$('.image_bck').each(function(){
+﻿function refreshImagBackground() {
+$('.image_bck').each(function(){
 		var image = $(this).attr('data-image');
 		var gradient = $(this).attr('data-gradient');
 		var color = $(this).attr('data-color');
@@ -37,6 +25,22 @@
 			$(this).css('opacity', opacity);
 		}
 	});
+}
+
+(function($) {
+
+	"use strict"; // Start of use strict
+
+	/* Titles Color */
+	$('.intro_text, .simple_stat').each(function(){
+		var color = $(this).attr('data-color');
+		if (color){
+			$(this).find('b').css('color', color);
+		}
+	});
+
+	/* Section Background */
+	refreshImagBackground()
 
 	/* Bootstrap */
 	$('[data-toggle="tooltip"]').tooltip();
@@ -266,6 +270,7 @@ $(".maps-section a").hover(function() {
 
 
 //Maps
+
 function updateControls(addressComponents) {
     $('.maps-street1').text(addressComponents.addressLine1);
     $('.maps-city').text(addressComponents.city);
@@ -364,12 +369,12 @@ $(function () {
 });
 
 
-var edit_trip_intro_url = "edit/trip/introduction"; //POST
-var edit_trip_desc_url = "edit/trip/description"; //POST
-var edit_trip_gallery_url = "edit/trip/galleries" ;//POST
-var edit_trip_maps_url = "edit/trip/maps"; //POST
-var delete_image_url = "delete/image"; // DELETE
-var edit_trip_others_url = "edit/trip/others"; //POST
+var edit_trip_intro_url = "https://api.ipify.org?format=json"; //POST
+var edit_trip_desc_url = "https://api.ipify.org?format=json"; //POST
+var edit_trip_gallery_url = "https://api.ipify.org?format=json" ;//POST
+var edit_trip_maps_url = "https://api.ipify.org?format=json"; //POST
+var delete_image_url = "https://api.ipify.org?format=json"; // DELETE
+var edit_trip_others_url = "https://api.ipify.org?format=json"; //POST
 
 //DropZone
 
@@ -391,29 +396,42 @@ var myIntroDropzone = new Dropzone("#intro-awesome-dropzone", {
     thumbnailWidth: 200,
     thumbnailHeight: 200,
     init : function () {
-        var mokFile= {name : "test.png",size : "1362"}
         this.on("maxfilesexceeded", function(file) {
             this.removeAllFiles();
             this.addFile(file);
         });
 
-        this.on("addedfile", function(file) {
-            $(".popup-gallery a:first-child img").attr("src", file);
-            console.log(file);
-            console.log(file.upload.filename);
-        });
-
         this.on("sending", function(file, xhr, formData) { 
-			formData.append("place", $("#modal-intro-place").val());
-			formData.append("city", $("#modal-intro-city").val());
-			formData.append("place", $("#modal-intro-place").val());
-			formData.append("slogan", $("#modal-intro-slogan").val());
+			console.log("seeeeeeending");
+		});
+		this.on("success", function(file, response) { 
+			if(response.status == "ok") {
+				$("#intro .into_back").attr("data-image",response.fileUrl);
+				refreshImagBackground();
+			}
 		});
     }
 });
 
-$('#introModal .save').click(function(){           
-  myIntroDropzone.processQueue();
+$('#introModal .save').click(function(){
+	var dataToSend={"place" :$("#modal-intro-place").val(),
+					"city" : $("#modal-intro-city").val(),
+					"slogan" : $("#modal-intro-slogan").val()} ;       
+    $.ajax({
+		type: 'POST',
+		url: edit_trip_intro_url,
+		data: dataToSend,
+		success : function(response, statut){ 
+			if(response.status == "ok") {
+				$("#intro .intro-place").text($("#modal-intro-place").val());
+				$("#intro .intro-city b").text($("#modal-intro-city").val());
+				$("#intro .intro-slogan").text($("#modal-intro-slogan").val());
+				$("#welcome .description-place").text($("#modal-intro-place").val());
+				myIntroDropzone.processQueue();
+			}
+		}
+	});   
+	
 });
 
 Dropzone.autoDiscover = false;
@@ -461,7 +479,28 @@ $('#descriptionModal .save').click(function(){
     $.ajax({
 		type: 'POST',
 		url: edit_trip_desc_url,
-		data: dataToSend
+		data: dataToSend,
+		success : function(response, statut){ 
+			if(response.status == "ok") {
+				var tripeDate = $("#modal-description-date input").val();
+				var tripeDateparts = tripeDate.split('-');
+				var $welcomeCountdown = $("#welcome .countdown");
+				$welcomeCountdown.attr("data-day",tripeDateparts[0]);
+				$welcomeCountdown.attr("data-month",tripeDateparts[1]);
+				$welcomeCountdown.attr("data-year",tripeDateparts[2]);
+				var year = tripeDateparts[2];
+				var month = tripeDateparts[1];
+				var day = tripeDateparts[0];
+
+				$('.countdown').countdown('destroy');
+				$('.countdown').countdown({until: new Date(year,month-1,day)});
+
+				$("#welcome .description-desc").text($("#modal-description-desc").val());
+				$("#welcome .description-date").text(tripeDate)
+				$("#welcome .description-duration").text($("#modal-description-duration").val());
+				$("#welcome .description-age").text($("#modal-description-age input[name='age']:checked").data().value);
+			}
+		}
 	});
 });
 
@@ -473,7 +512,13 @@ $('#mapsModal .save').click(function(){
     $.ajax({
 		type: 'POST',
 		url: edit_trip_maps_url,
-		data: dataToSend
+		data: dataToSend,
+		success : function(response, statut){ 
+				$(".maps-section .maps").attr("data-latitude",$("#modal-maps-latitude").val());
+				$(".maps-section .maps").attr("data-latitude",$("#modal-maps-longitude").val());
+				$(".maps-section .us3-address").val($("#modal-maps-address").val());
+				$('#maps').locationpicker();
+		}
 	});
 });
 
@@ -491,5 +536,4 @@ $('#othersModal .save').click(function(){
 		data: dataToSend
 	});
 });
-
 
