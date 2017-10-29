@@ -4274,7 +4274,15 @@ h1 small {
 }
 
 #modal-others-categories .btn, .modal-description-age .btn{
-	margin-bottom:2px 
+	margin-bottom:2px ;
+}
+
+.categorie_block{
+	margin-bottom: 9px ;
+}
+
+.display-none {
+	display: none !important;
 }
 
 /*Responsive*/

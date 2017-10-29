@@ -214,6 +214,15 @@ $('.image_bck').each(function(){
 
 	});
 
+	$("#categories .categorie_block").each(function(){
+		if (!$(this).hasClass("display-none")) {
+			var datavalue = $(this).find(".adds_txt h5").text();
+			$("#modal-others-categories input[data-value='"+datavalue+"'").prop("checked", true);
+			$("#modal-others-categories input[data-value='"+datavalue+"'").parent().addClass("active");
+		}
+	});
+
+
 })(jQuery);
 
 
@@ -278,85 +287,6 @@ function updateControls(addressComponents) {
     $('.maps-zip').text(addressComponents.postalCode);
     $('.maps-country').text(addressComponents.country);
 }
-
-
-var customStyles = [{
-    "elementType": "geometry",
-    "stylers": [{"hue": "#ff4400"}, {"saturation": -68}, {"lightness": -4}, {"gamma": 0.72}]
-}, {"featureType": "road", "elementType": "labels.icon"}, {
-    "featureType": "landscape.man_made",
-    "elementType": "geometry",
-    "stylers": [{"hue": "#0077ff"}, {"gamma": 3.1}]
-}, {
-    "featureType": "water",
-    "stylers": [{"hue": "#00ccff"}, {"gamma": 0.44}, {"saturation": -33}]
-}, {
-    "featureType": "poi.park",
-    "stylers": [{"hue": "#44ff00"}, {"saturation": -23}]
-}, {
-    "featureType": "water",
-    "elementType": "labels.text.fill",
-    "stylers": [{"hue": "#007fff"}, {"gamma": 0.77}, {"saturation": 65}, {"lightness": 99}]
-}, {
-    "featureType": "water",
-    "elementType": "labels.text.stroke",
-    "stylers": [{"gamma": 0.11}, {"weight": 5.6}, {"saturation": 99}, {"hue": "#0091ff"}, {"lightness": -86}]
-}, {
-    "featureType": "transit.line",
-    "elementType": "geometry",
-    "stylers": [{"lightness": -48}, {"hue": "#ff5e00"}, {"gamma": 1.2}, {"saturation": -23}]
-}, {
-    "featureType": "transit",
-    "elementType": "labels.text.stroke",
-    "stylers": [{"saturation": -64}, {"hue": "#ff9100"}, {"lightness": 16}, {"gamma": 0.47}, {"weight": 2.7}]
-}];
-
-$('#maps').locationpicker({
-    location: {
-        latitude: $(".maps-section .maps").data("latitude"),
-		longitude: $(".maps-section .maps").data("longitude")
-    },
-    radius: 0,
-    styles: customStyles,
-    inputBinding: {
-        latitudeInput: $('.us3-lat'),
-        longitudeInput: $('.us3-lon'),
-        locationNameInput: $('.us3-address')
-    },
-    enableAutocomplete: true,
-    markerIcon: 'images/marker.png',
-    onchanged: function (currentLocation, radius, isMarkerDropped) {
-	    var addressComponents = $(this).locationpicker('map').location.addressComponents;
-	    updateControls(addressComponents);
-    },
-    oninitialized: function(component) {
-        var addressComponents = $(component).locationpicker('map').location.addressComponents;
-        updateControls(addressComponents);
-    }
-
-});
-
-/* Edit */
-
-$('#editMaps').locationpicker({
-	location: {
-		latitude: $(".maps-section .maps").data("latitude"),
-		longitude: $(".maps-section .maps").data("longitude")
-	},
-	radius: 0,
-	styles: customStyles,
-	inputBinding: {
-		latitudeInput: $('#modal-maps-latitude'),
-		longitudeInput: $('#modal-maps-longitude'),
-		locationNameInput: $('#modal-maps-address')
-	},
-	enableAutocomplete: true,
-	markerIcon: 'images/marker.png'
-});
-
-$('#mapsModal').on('shown.bs.modal', function () {
-	$('#editMaps').locationpicker('autosize');
-});
 
 //datepicker
 
@@ -456,12 +386,45 @@ var myGalleryDropzone = new Dropzone("#gallery-awesome-dropzone", {
             thisDropzone.options.thumbnail.call(thisDropzone,mokFile,$( this ).attr('href'));
 
         });
+        thisDropzone.on("success", function(file, response) { 
+			if(response.status == "ok") {
+				response.content.files.forEach(function(element, index, array) {
+					if(($("#maps-gallery .popup-gallery a").first().attr('href') == "images/blank_gallery_image.png") && index == 0){
+						$("#maps-gallery .popup-gallery a img").first().attr("src",element.url);
+						$("#maps-gallery .popup-gallery a").first().attr("href",element.url);
+						$("#maps-gallery .popup-gallery a").first().attr("data-size",element.size);
+					}else {
+						$("#maps-gallery .popup-gallery").append("<a href="+element.url+" data-size="+element.size+"></a>");
+					}
+					
+				});
+			}
+		});
+
         thisDropzone.on("removedfile", function(file) {
 			var dataId={"fileName" : file.name};
 			$.ajax({
-				type: 'DELETE',
+				type: 'GET',
 				url: delete_image_url,
-				data: dataId
+				data: dataId,
+				success : function(response, statut){ 
+					if(response.status == "ok") {
+						if($("#maps-gallery .popup-gallery a").first().attr('href') == file.name) {
+							if($("#maps-gallery .popup-gallery a").size() > 1){
+								var lastHref = $("#maps-gallery .popup-gallery a").last().attr('href');
+								$("#maps-gallery .popup-gallery a").last().remove();
+								$("#maps-gallery .popup-gallery a img").first().attr("src",lastHref);
+								$("#maps-gallery .popup-gallery a").first().attr("href",lastHref);
+							}else {
+								$("#maps-gallery .popup-gallery a img").first().attr("src","images/blank_gallery_image.png");
+								$("#maps-gallery .popup-gallery a").first().attr("href","images/blank_gallery_image.png");
+							}
+							
+						}else {
+							$("#maps-gallery .popup-gallery a[href='"+file.name+"']").remove();
+						}
+					}
+				}
 			});
 		});
     }
@@ -523,17 +486,108 @@ $('#mapsModal .save').click(function(){
 });
 
 $('#othersModal .save').click(function(){ 
-
-	var dataToSend = { 'categories[]' : [] , "text" : $("#modal-othres-desc").val()};
+	var notCheckedCat = [];
+	var dataToSend = { 'categories' : [] , "text" : $("#modal-othres-desc").val()};
 	$("#modal-others-categories input:checked").each(function() {
-	  dataToSend['categories[]'].push($(this).data().value);
-	  console.log("data");
+	  dataToSend['categories'].push($(this).data().value);
 	});
+
 
 	$.ajax({
 		type: 'POST',
 		url: edit_trip_others_url,
-		data: dataToSend
+		data: dataToSend,
+		success : function(response, statut){ 
+			if(response.status == "ok") {
+				$("#others .others-desc").text($("#modal-othres-desc").val());
+				$("#modal-others-categories input").each(function() {
+					if($(this).is(":checked")) {
+						$("#categories .categorie_block:contains('"+$(this).data().value+"')").removeClass("display-none");
+					} else {
+						$("#categories .categorie_block:contains('"+$(this).data().value+"')").addClass("display-none");
+					}
+				});
+			}
+		}
 	});
 });
 
+
+
+var customStyles = [{
+    "elementType": "geometry",
+    "stylers": [{"hue": "#ff4400"}, {"saturation": -68}, {"lightness": -4}, {"gamma": 0.72}]
+}, {"featureType": "road", "elementType": "labels.icon"}, {
+    "featureType": "landscape.man_made",
+    "elementType": "geometry",
+    "stylers": [{"hue": "#0077ff"}, {"gamma": 3.1}]
+}, {
+    "featureType": "water",
+    "stylers": [{"hue": "#00ccff"}, {"gamma": 0.44}, {"saturation": -33}]
+}, {
+    "featureType": "poi.park",
+    "stylers": [{"hue": "#44ff00"}, {"saturation": -23}]
+}, {
+    "featureType": "water",
+    "elementType": "labels.text.fill",
+    "stylers": [{"hue": "#007fff"}, {"gamma": 0.77}, {"saturation": 65}, {"lightness": 99}]
+}, {
+    "featureType": "water",
+    "elementType": "labels.text.stroke",
+    "stylers": [{"gamma": 0.11}, {"weight": 5.6}, {"saturation": 99}, {"hue": "#0091ff"}, {"lightness": -86}]
+}, {
+    "featureType": "transit.line",
+    "elementType": "geometry",
+    "stylers": [{"lightness": -48}, {"hue": "#ff5e00"}, {"gamma": 1.2}, {"saturation": -23}]
+}, {
+    "featureType": "transit",
+    "elementType": "labels.text.stroke",
+    "stylers": [{"saturation": -64}, {"hue": "#ff9100"}, {"lightness": 16}, {"gamma": 0.47}, {"weight": 2.7}]
+}];
+
+$('#maps').locationpicker({
+    location: {
+        latitude: $(".maps-section .maps").data("latitude"),
+		longitude: $(".maps-section .maps").data("longitude")
+    },
+    radius: 0,
+    styles: customStyles,
+    inputBinding: {
+        latitudeInput: $('.us3-lat'),
+        longitudeInput: $('.us3-lon'),
+        locationNameInput: $('.us3-address')
+    },
+    enableAutocomplete: true,
+    markerIcon: 'images/marker.png',
+    onchanged: function (currentLocation, radius, isMarkerDropped) {
+	    var addressComponents = $(this).locationpicker('map').location.addressComponents;
+	    updateControls(addressComponents);
+    },
+    oninitialized: function(component) {
+        var addressComponents = $(component).locationpicker('map').location.addressComponents;
+        updateControls(addressComponents);
+    }
+
+});
+
+/* Edit */
+
+$('#editMaps').locationpicker({
+	location: {
+		latitude: $(".maps-section .maps").data("latitude"),
+		longitude: $(".maps-section .maps").data("longitude")
+	},
+	radius: 0,
+	styles: customStyles,
+	inputBinding: {
+		latitudeInput: $('#modal-maps-latitude'),
+		longitudeInput: $('#modal-maps-longitude'),
+		locationNameInput: $('#modal-maps-address')
+	},
+	enableAutocomplete: true,
+	markerIcon: 'images/marker.png'
+});
+
+$('#mapsModal').on('shown.bs.modal', function () {
+	$('#editMaps').locationpicker('autosize');
+});
