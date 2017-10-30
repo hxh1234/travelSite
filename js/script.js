@@ -307,26 +307,123 @@ $(function () {
     });
 });
 
+/*
+@Request
+place
+city
+slogan
 
+@Response
+{
+    "content": {},
+    "status": "ok",
+    "message": ["message1","message2","message3"]
+}
+*/
+var edit_trip_intro_url = "edit/trip/introduction"; //POST
+
+
+/*
+@Request
+file
+
+@Response
+{
+    "content": {
+		"fileUrl": "filepath"
+    },
+    "status": "ok",
+    "message": ["message1","message2","message3"]
+}
+*/
+var edit_trip_intro_image_url = "edit/trip/introduction/image"; //POST
+
+
+/*
+@Request
+description
+date
+duration
+price
+age
+
+@Response
+{
+    "content": {},
+    "status": "ok",
+    "message": ["message1","message2","message3"]
+}
+*/
 var edit_trip_desc_url = "edit/trip/description"; //POST
-var edit_trip_gallery_url = "edit/trip/galleries" ;//POST
-var edit_trip_maps_url = "edit/trip/maps"; //POST
-var delete_image_url = "delete/image"; // DELETE
-var edit_trip_others_url = "edit/trip/others"; //POST
 
-var edit_trip_intro_url = "https://api.ipify.org?format=json"; //POST
-var edit_trip_desc_url = "https://api.ipify.org?format=json"; //POST
-var edit_trip_gallery_url = "https://api.ipify.org?format=json" ;//POST
-var edit_trip_maps_url = "https://api.ipify.org?format=json"; //POST
-var delete_image_url = "https://api.ipify.org?format=json"; // DELETE
-var edit_trip_others_url = "https://api.ipify.org?format=json"; //POST
+
+/*
+@Request
+files[] 
+
+@Response
+{
+    "content": {
+		"files":[{"url": "img/img1.png","size": 1523},
+		  		 {"url": "img/img2.png","size": 5523},
+		  		 {"url": "img/img3.png","size": 3523}]
+    },
+    "status": "ok",
+    "message": ["message1","message2","message3"]
+}
+*/
+var edit_trip_gallery_url = "edit/trip/galleries" ;//POST
+
+
+/*
+@Request
+latitude
+longitude
+address
+
+@Response
+{
+    "content": {},
+    "status": "ok",
+    "message": ["message1","message2","message3"]
+}
+*/
+var edit_trip_maps_url = "edit/trip/maps"; //POST
+
+
+/*
+@Request
+fileName
+
+@Response
+{
+    "content": {},
+    "status": "ok",
+    "message": ["message1","message2","message3"]
+}
+*/
+var delete_image_url = "delete/image"; // DELETE
+
+/*
+@Request
+categories[] 
+text
+
+@Response
+{
+    "content": {},
+    "status": "ok",
+    "message": ["message1","message2","message3"]
+}
+*/
+var edit_trip_others_url = "edit/trip/others"; //POST
 
 //DropZone
 
 Dropzone.autoDiscover = false;
 
 var myIntroDropzone = new Dropzone("#intro-awesome-dropzone", {
-	url: edit_trip_intro_url,                        
+	url: edit_trip_intro_image_url,                        
     autoProcessQueue: false,
     paramName: "file", // The name that will be used to transfer the file
     addRemoveLinks: true,
@@ -351,12 +448,15 @@ var myIntroDropzone = new Dropzone("#intro-awesome-dropzone", {
 		});
 		this.on("success", function(file, response) { 
 			if(response.status == "ok") {
-				$("#intro .into_back").attr("data-image",response.fileUrl);
+				$("#intro .into_back").attr("data-image",response.content.fileUrl);
 				refreshImagBackground();
+				$('#introModal').modal('hide');
+			} else {
+				alertMessage($("#introModal .modal-body"),response.messages);
 			}
 		});
 		this.on("error", function(file, response) {
-			alertMessage($("#introModal .modal-body"),response.messages)
+			//alertMessage($("#introModal .modal-body"),response.messages);
 		});
     }
 });
@@ -377,7 +477,7 @@ $('#introModal .save').click(function(){
 				$("#welcome .description-place").text($("#modal-intro-place").val());
 				myIntroDropzone.processQueue();
 			} else {
-				alertMessage($("#introModal .modal-body"),response.messages)
+				alertMessage($("#introModal .modal-body"),response.messages);
 			}
 		}
 	});   
@@ -388,13 +488,13 @@ Dropzone.autoDiscover = false;
 var myGalleryDropzone = new Dropzone("#gallery-awesome-dropzone", {
     url: edit_trip_gallery_url,                        
     autoProcessQueue: false,
-    paramName: "file", // The name that will be used to transfer the file
+    paramName: "files", // The name that will be used to transfer the file
     addRemoveLinks: true,
     dictCancelUpload: "Cancel upload",
     dictRemoveFile: "Remove",
     dictCancelUploadConfirmation: "Confirme canceltion",
     maxFilesize: 10, // MB
-    parallelUploads: 5,
+    parallelUploads: 10,
     uploadMultiple: true,
     acceptedFiles: "image/*",
     init : function () {
@@ -416,8 +516,10 @@ var myGalleryDropzone = new Dropzone("#gallery-awesome-dropzone", {
 					}else {
 						$("#maps-gallery .popup-gallery").append("<a href="+element.url+" data-size="+element.size+"></a>");
 					}
-					
 				});
+				$('#galleryModal').modal('hide');
+			} else {
+				alertMessage($("#galleryModal .modal-body"),response.messages);
 			}
 		});
 
@@ -439,16 +541,18 @@ var myGalleryDropzone = new Dropzone("#gallery-awesome-dropzone", {
 								$("#maps-gallery .popup-gallery a img").first().attr("src","images/blank_gallery_image.png");
 								$("#maps-gallery .popup-gallery a").first().attr("href","images/blank_gallery_image.png");
 							}
-							
+						
 						}else {
 							$("#maps-gallery .popup-gallery a[href='"+file.name+"']").remove();
 						}
+					} else {
+						alertMessage($("#galleryModal .modal-body"),response.messages);
 					}
 				}
 			});
 		});
 		thisDropzone.on("error", function(file, response) {
-			alertMessage($("#galleryModal .modal-body"),response.messages)
+			//alertMessage($("#galleryModal .modal-body"),response.messages);
 		});
     }
 });
@@ -461,6 +565,7 @@ $('#descriptionModal .save').click(function(){
 	var dataToSend={"description" : $("#modal-description-desc").val(),
 					"date" : $("#modal-description-date input").val(),
 					"duration" : $("#modal-description-duration").val(),
+					"price" : $("#modal-description-price").val(),
 					"age" : $("#modal-description-age input[name='age']:checked").data().value} ;       
     $.ajax({
 		type: 'POST',
@@ -484,9 +589,11 @@ $('#descriptionModal .save').click(function(){
 				$("#welcome .description-desc").text($("#modal-description-desc").val());
 				$("#welcome .description-date").text(tripeDate)
 				$("#welcome .description-duration").text($("#modal-description-duration").val());
+				$("#welcome .description-price").text($("#modal-description-price").val());
 				$("#welcome .description-age").text($("#modal-description-age input[name='age']:checked").data().value);
+				$('#descriptionModal').modal('hide');
 			} else {
-				alertMessage($("#descriptionModal .modal-body"),response.messages)
+				alertMessage($("#descriptionModal .modal-body"),response.messages);
 			}
 		}
 	});
@@ -502,10 +609,21 @@ $('#mapsModal .save').click(function(){
 		url: edit_trip_maps_url,
 		data: dataToSend,
 		success : function(response, statut){ 
+			if(response.status == "ok") {
 				$(".maps-section .maps").attr("data-latitude",$("#modal-maps-latitude").val());
 				$(".maps-section .maps").attr("data-latitude",$("#modal-maps-longitude").val());
 				$(".maps-section .us3-address").val($("#modal-maps-address").val());
-				$('#maps').locationpicker();
+				$('#maps').locationpicker({
+				    location: {
+				        latitude: $(".maps-section .maps").data("latitude"),
+						longitude: $(".maps-section .maps").data("longitude")
+				    },
+				    radius: 0
+				});
+				$('#mapsModal').modal('hide');
+			}else {
+				alertMessage($("#mapsModal .modal-body"),response.messages)
+			}
 		}
 	});
 });
@@ -532,6 +650,7 @@ $('#othersModal .save').click(function(){
 						$("#categories .categorie_block:contains('"+$(this).data().value+"')").addClass("display-none");
 					}
 				});
+				$('#othersModal').modal('hide');
 			} else {
 				alertMessage($("#othersModal .modal-body"),response.messages)
 			}

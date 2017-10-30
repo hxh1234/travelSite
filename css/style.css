@@ -1,54 +1,3 @@
-/* TABLE OF CONTENT
-======================================
-# 1. Main Styles
-# 2. Passpartu Green
-# 3. Passpartu Pink
-# 4. Passpartu Light
-# 5. Passpartu Blue
-# 6. Passpartu Red
-# 7. Passpartu Purple
-# 8. Passpartu Black
-# 9. Passpartu White
-# 10. Inside
-# 11. Rounded
-# 12. Products
-# 13. Comments
-# 14. font Mr Dafoe
-# 15. font-Seaweed-Script
-# 16. font-Roboto-Slab
-# 17. Wedding
-# 18. Header
-# 19. Header No Border
-# 20. Top Line
-# 21. Header White
-# 22. Header Black
-# 23. Portfolio
-# 24. Food
-# 25. Bootstrap
-# 26. Animations
-# 27. Intro
-# 28. Object Sliders
-# 29. Film Slider
-# 30. Sport Items
-# 31. Intro
-# 32. Boxes
-# 33. RSVP
-# 34. Over Animation
-# 35. Menu
-# 36. Zoom Animation
-# 37. Prices
-# 38. Reviews
-# 39. Title Block
-# 40. Medicine
-# 41. Spa
-# 42. Pricing Table
-# 43. Partners
-# 44. Tabs
-# 45. Footer
-# 46. Responsive
-======================================
-*/
-
 
 
 /*Main Styles*/
@@ -1069,10 +1018,6 @@ ul {
 	}
 
 
-/*Comments*/
-.comments {
-
-}
 .comments-content {
 	margin: 40px 0 0
 }
