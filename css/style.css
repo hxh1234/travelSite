@@ -4259,6 +4259,10 @@ h1 small {
 	width: 100%;
 	height: 100%;
 }
+#introModal .dropzone .dz-preview .dz-image img{
+	width: 100%;
+	height: 100%;
+}
 
 #galleryModal .dropzone .dz-preview .dz-image img {
 	width: 100%;
