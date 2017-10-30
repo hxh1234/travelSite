@@ -276,10 +276,19 @@ $(".maps-section a").hover(function() {
     .each(resizeInput);
 });
 
-
+function alertMessage(selector,messages) {
+	var messageHTML ="";
+	messages.forEach(function(messgae, index, array) {
+		messageHTML = messageHTML + '<li>'+messgae+'</li>'
+	});
+	var alertMessage = '<div class="alert alert-danger alert-dismissible fade in" role="alert">' +
+						'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>' +
+						'<p><ul>'+messageHTML+'</ul></p>' +
+						'</div>'
+	$(selector).prepend(alertMessage);
+}
 
 //Maps
-
 function updateControls(addressComponents) {
     $('.maps-street1').text(addressComponents.addressLine1);
     $('.maps-city').text(addressComponents.city);
@@ -298,6 +307,12 @@ $(function () {
     });
 });
 
+
+var edit_trip_desc_url = "edit/trip/description"; //POST
+var edit_trip_gallery_url = "edit/trip/galleries" ;//POST
+var edit_trip_maps_url = "edit/trip/maps"; //POST
+var delete_image_url = "delete/image"; // DELETE
+var edit_trip_others_url = "edit/trip/others"; //POST
 
 var edit_trip_intro_url = "https://api.ipify.org?format=json"; //POST
 var edit_trip_desc_url = "https://api.ipify.org?format=json"; //POST
@@ -340,6 +355,9 @@ var myIntroDropzone = new Dropzone("#intro-awesome-dropzone", {
 				refreshImagBackground();
 			}
 		});
+		this.on("error", function(file, response) {
+			alertMessage($("#introModal .modal-body"),response.messages)
+		});
     }
 });
 
@@ -358,6 +376,8 @@ $('#introModal .save').click(function(){
 				$("#intro .intro-slogan").text($("#modal-intro-slogan").val());
 				$("#welcome .description-place").text($("#modal-intro-place").val());
 				myIntroDropzone.processQueue();
+			} else {
+				alertMessage($("#introModal .modal-body"),response.messages)
 			}
 		}
 	});   
@@ -427,6 +447,9 @@ var myGalleryDropzone = new Dropzone("#gallery-awesome-dropzone", {
 				}
 			});
 		});
+		thisDropzone.on("error", function(file, response) {
+			alertMessage($("#galleryModal .modal-body"),response.messages)
+		});
     }
 });
 
@@ -462,6 +485,8 @@ $('#descriptionModal .save').click(function(){
 				$("#welcome .description-date").text(tripeDate)
 				$("#welcome .description-duration").text($("#modal-description-duration").val());
 				$("#welcome .description-age").text($("#modal-description-age input[name='age']:checked").data().value);
+			} else {
+				alertMessage($("#descriptionModal .modal-body"),response.messages)
 			}
 		}
 	});
@@ -507,6 +532,8 @@ $('#othersModal .save').click(function(){
 						$("#categories .categorie_block:contains('"+$(this).data().value+"')").addClass("display-none");
 					}
 				});
+			} else {
+				alertMessage($("#othersModal .modal-body"),response.messages)
 			}
 		}
 	});
