@@ -378,7 +378,7 @@ html {
 .rounded .sub_menu a.active:before,
 .rounded .form-control,
 .rounded.progress,
-.rounded .pricing-table,
+.rounded .travel-table,
 .rounded .no_border ul .mega_menu:before,
 .rounded .no_border ul .mega_menu {
 		border-radius: 3px!important
@@ -3073,10 +3073,7 @@ blockquote footer {
 	overflow: hidden;
 	padding: 0;
 }
-.item {
-	width: 100%;
-	height: 100%
-}
+
 	.iframe_abs iframe {
 		position: absolute;
 		top: 0;
@@ -3834,21 +3831,21 @@ blockquote footer {
 	}
 
 /*Prices*/
-.pricing-table ul{
+.travel-table ul{
 	list-style: none;
 	padding: 0;
 	font: 400 18px/28px Open Sans;
 	margin: 0 0 20px 0
 }
-.pricing-table.image_bck {
+.travel-table.image_bck {
 	border: 0!important
 }
 
-.pricing-table {
+.travel-table {
 	border: 1px solid #ccc;
 	padding: 20px
 }
-	.pricing-table h4 {
+	.travel-table h4 {
 		font:300 34px/42px Oswald;
 		margin: 0 0 20px 0
 	}
@@ -3975,24 +3972,24 @@ blockquote footer {
 }
 
 /*Pricing Table*/
-.pricing-table {
+.travel-table {
 	border: 1px solid #ccc;
-	padding: 30px
+	padding: 0 30px 30px 30px;
 }
-	.pricing-table h5 {
+	.travel-table h5 {
 		text-transform: uppercase;
 	}
-	.pricing-table .price {
+	.travel-table .price {
 		font: 300 70px/90px Oswald;
 		color: #292929
 	}
-	.white_txt .pricing-table .price {
+	.white_txt .travel-table .price {
 		color: #fff
 	}
-	.white_txt .pricing-table  {
+	.white_txt .travel-table  {
 		border: 1px solid rgba(255,255,255,0.18);
 	}
-	.pricing-table .btn {
+	.travel-table .btn {
 		margin: 0 0 20px
 	}
 /*Partners*/
@@ -4228,6 +4225,185 @@ h1 small {
 
 .display-none {
 	display: none !important;
+}
+
+/* +=+=+=+=+=+=+=+=+=+=+=+=+=+=+= \
+----- TRAVEL INFO 
+\ +=+=+=+=+=+=+=+=+=+=+=+=+=+=+= */
+#travelInfo {    
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+#travelInfo.BGdark, #travelInfo.BGprime {
+    background-image: none;
+}
+#travelInfo .item h2 {
+    font-size: 2.85em;
+    font-weight: 300;
+    letter-spacing: -1px;
+    margin: 0;
+}
+#travelInfo .item .item-info .info p {
+    font-size: 12px;
+}
+.threeD {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+.threeD .img-responsive {
+    margin: 0 auto;
+}
+.section_travelInfo .owl-carousel .item img{
+	width: auto;
+	display: inline;
+} 
+.section_travelInfo .container {
+	overflow: hidden;
+} 
+.owl-carousel .item {
+    position: relative;
+    background-color: #fff;
+    cursor: url(../images/cursor.png), move;
+    margin: 1em;
+    -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.15);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.15);
+	height: 500px;
+}
+.owl-carousel.rel-blog-slider .item{
+    cursor: inherit;
+}
+.owl-carousel .item .item-header {
+    padding: 0.55em 1.5em 0.55em 6.55em;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.owl-carousel .item .item-header i {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 2.35em;
+    color: #fff;
+    width: 2.35em;
+    height: 2.35em;
+    line-height: 2.35em;
+    text-align: center;
+}
+.owl-carousel .item .item-info {
+    overflow: hidden;
+}
+.owl-carousel .item .item-info h6 {
+    margin: 0.85em 0 1.55em;
+}
+.owl-carousel .item .item-info div > strong {
+    display: block;
+}
+.owl-carousel .item .item-info h2 {
+    font-size: 2.35em;
+    margin-bottom: 0.35em;
+}
+.owl-carousel .item .item-info div > strong {
+    font-size: 1.15em;
+    margin-top: 0.65em;
+}
+.owl-carousel .item .item-info div.left {
+    display: block;
+    position: relative;
+    float: left;
+    width: 45%;
+    font-size: 12px;
+    line-height: 1.35em;
+}
+.owl-carousel .item .item-info div.right {
+    display: block;
+    position: relative;
+    float: right;
+    width: 45%;
+    font-size: 12px;
+    line-height: 1.35em;
+    text-align: right;
+}
+.owl-carousel .item .item-info .svg {
+    margin-top: 1.35em;
+}
+
+
+.owl-carousel .item .item-info .departure, .owl-carousel .item .item-info .arrival {
+    padding: 1.35em;
+}
+.item h5 {
+    font-size: 1.15em;
+}
+.owl-carousel .item .item-header i {
+    height: 2.15em;
+    width: 2.15em;
+	color: #d30017;
+}
+
+.owl-carousel .item .item-info .departure {
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.3);
+    padding: 1.35em 1.85em 1.85em;
+    border-bottom-width: 1.5px;
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: 14px;
+    color: #3c4251;
+    line-height: 1.714em;
+}
+
+.owl-carousel .item .item-info .img-responsive {
+    margin: 1em auto;
+}
+.owl-carousel .item .item-info .departure, .owl-carousel .item .item-info .arrival {
+    padding: 1.35em;
+}
+
+ {
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.3);
+    padding: 1.35em 1.85em 1.85em;
+    border-bottom-width: 1.5px;
+    font-family: 'Roboto', Arial, sans-serif;
+    color: #3c4251;
+    line-height: 1.714em;
+}
+.owl-carousel .item .item-info .img-responsive {
+    display: block;
+}
+.owl-carousel .item .item-info .arrival, .owl-carousel .item .item-info .info {
+    display: block;
+    padding: 1.35em 1.85em 1.85em;
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: 14px;
+    color: #3c4251;
+    line-height: 1.714em;
+}
+.owl-carousel .item .item-info .info i {
+    font-size: 1.65em;
+    vertical-align: middle;
+}
+.owl-carousel .item .item-info .info p {
+    font-weight: 12px;
+    line-height: 1.65em;
+}
+.owl-theme .owl-controls .owl-buttons div {
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    font-size: 1.35em;
+    line-height: 1.55em;
+    padding: 0.55em;
+    margin-top: 1.5em;
+}
+.owl-theme .owl-controls .owl-buttons div .svg {
+    width: 1.65em;
+    height: 1.65em;
+    vertical-align: middle;
+}
+.owl-theme .owl-controls .owl-buttons div .svg path {
+    fill: #fff;
 }
 
 /*Responsive*/
@@ -4520,7 +4696,7 @@ h1 small {
 		margin-bottom: 0;
 		margin-top: 20px
 	}
-	.pricing-table {
+	.travel-table {
 		margin-bottom: 15px
 	}
 	.simple_title .simple_block {

@@ -222,6 +222,15 @@ $('.image_bck').each(function(){
 		}
 	});
 
+	$('.owl-carousel').owlCarousel({
+    loop:true,
+    margin:10,
+    autoWidth:true,
+    nav:true,
+    items:3
+})
+
+
 
 })(jQuery);
 
