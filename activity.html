@@ -34,7 +34,7 @@
     <link href='fonts/oswald.css' rel='stylesheet' type='text/css'>
 
 </head>
-<body class="red_title rounded">
+<body class="red_title rounded"  data-spy="scroll" data-target=".navbar" data-offset="50" >
 
     <!-- Passpartu -->
     <div class="passpartu passpartu_left"></div>
@@ -44,6 +44,31 @@
     <!-- Passpartu End -->
 
 <div class="page" id="page">
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">WebSiteName</a>
+    </div>
+    <div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li><a href="#intro">Section 1</a></li>
+          <li><a href="#welcome">Section 2</a></li>
+          <li><a href="#travelInfo">Section 3</a></li>
+          <li><a href="#maps-gallery">Section 3</a></li>
+          <li><a href="#others">Section 3</a></li>
+
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>    
 
     <!--Intro-->
     <section class="intro" id="intro">

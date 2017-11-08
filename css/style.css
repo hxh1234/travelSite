@@ -4227,15 +4227,26 @@ h1 small {
 	display: none !important;
 }
 
-/* +=+=+=+=+=+=+=+=+=+=+=+=+=+=+= \
------ TRAVEL INFO 
-\ +=+=+=+=+=+=+=+=+=+=+=+=+=+=+= */
+
 #travelInfo {    
     background-attachment: fixed;
     background-position: center;
     background-size: cover;
     position: relative;
+	padding: 50px 0;
 }
+
+#travelInfo .owl-carousel .add-new {    
+	border: 2px dashed #0087F7;
+	border-radius: 5px;
+	background: white;
+	cursor: pointer;
+}
+
+#travelInfo .owl-carousel .add-new h5 {    
+	margin-top: 240px;
+}
+
 #travelInfo.BGdark, #travelInfo.BGprime {
     background-image: none;
 }
@@ -4404,6 +4415,49 @@ h1 small {
 }
 .owl-theme .owl-controls .owl-buttons div .svg path {
     fill: #fff;
+}
+
+.sub_menu li.active a,.sub_menu li.active {
+	transition:0.3s all;
+	color: #eee;
+	background-color: #262626;
+}
+
+.day ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+.day ul li {
+    display: block;
+    float: left;
+    width: 60%;
+    position: relative;
+    padding: 1.5em 1.5em 1.5em 3em;
+}
+
+.day .day-content {
+	font-size: 0.9em;
+}
+
+.day ul li:nth-child(2), .day ul li:nth-child(4) {
+	width: 40%
+}
+
+
+.day ul li i {
+    position: absolute;
+    left: 0;
+    top: 1.55em;
+    font-size: 1.65em;
+}
+
+.day ul li h6 {
+    text-transform: capitalize;
+    margin-bottom: 0.35em;
+    font-size: 1.15em;
 }
 
 /*Responsive*/
@@ -4859,7 +4913,12 @@ h1 small {
 		text-align: center;
 	}
 
+	.day ul li {;
+   		width: 100%;
+	}
+
 }
+
 
 @media (max-width:480px){
 	.row20 {
