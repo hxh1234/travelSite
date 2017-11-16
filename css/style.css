@@ -4185,6 +4185,23 @@ h1 small {
     top: 15px;
     position: absolute;
 }
+.editbtnActivity {
+	z-index: 5;
+    right: 13px;
+    position: fixed;
+    text-align: center;
+    display: flex;
+    opacity: 0;
+    transition: 0.3s all;
+    text-decoration: none!important;
+    align-items: center;
+    top: -70px;
+}
+
+.open .editbtnActivity {
+    opacity: 1;
+	top: 70px;
+}
 
 .dropzone {
 	border: 2px dashed #0087F7;
@@ -4259,6 +4276,11 @@ h1 small {
 #travelInfo .item .item-info .info p {
     font-size: 12px;
 }
+
+#travelInfoModal .remove{
+    left: 15px;
+    position: absolute;
+}
 .threeD {
     position: absolute;
     top: 0;
@@ -4283,7 +4305,8 @@ h1 small {
     margin: 1em;
     -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.15);
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.15);
-	height: 500px;
+	height: 100%;
+	min-height: 500px;
 }
 .owl-carousel.rel-blog-slider .item{
     cursor: inherit;
@@ -4297,12 +4320,16 @@ h1 small {
     left: 0;
     top: 0;
     font-size: 2.35em;
-    color: #fff;
-    width: 2.35em;
-    height: 2.35em;
     line-height: 2.35em;
     text-align: center;
+    height: 2.15em;
+    width: 2.15em;
+	color: #d30017;
 }
+.owl-carousel .item .item-header h5 small {
+    display: block;
+}
+
 .owl-carousel .item .item-info {
     overflow: hidden;
 }
@@ -4341,17 +4368,8 @@ h1 small {
     margin-top: 1.35em;
 }
 
-
-.owl-carousel .item .item-info .departure, .owl-carousel .item .item-info .arrival {
-    padding: 1.35em;
-}
 .item h5 {
     font-size: 1.15em;
-}
-.owl-carousel .item .item-header i {
-    height: 2.15em;
-    width: 2.15em;
-	color: #d30017;
 }
 
 .owl-carousel .item .item-info .departure {
@@ -4367,18 +4385,7 @@ h1 small {
 .owl-carousel .item .item-info .img-responsive {
     margin: 1em auto;
 }
-.owl-carousel .item .item-info .departure, .owl-carousel .item .item-info .arrival {
-    padding: 1.35em;
-}
 
- {
-    border-bottom: 1px dashed rgba(0, 0, 0, 0.3);
-    padding: 1.35em 1.85em 1.85em;
-    border-bottom-width: 1.5px;
-    font-family: 'Roboto', Arial, sans-serif;
-    color: #3c4251;
-    line-height: 1.714em;
-}
 .owl-carousel .item .item-info .img-responsive {
     display: block;
 }
@@ -4389,6 +4396,10 @@ h1 small {
     font-size: 14px;
     color: #3c4251;
     line-height: 1.714em;
+}
+
+.owl-carousel .item .item-info .departure, .owl-carousel .item .item-info .arrival {
+    padding: 1.35em;
 }
 .owl-carousel .item .item-info .info i {
     font-size: 1.65em;
@@ -4458,6 +4469,27 @@ h1 small {
     text-transform: capitalize;
     margin-bottom: 0.35em;
     font-size: 1.15em;
+}
+
+
+#activityModal .delete {
+	-webkit-appearance: none;
+    padding: 0;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    font-size: 21px;
+    font-weight: bold;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    filter: alpha(opacity=20);
+    opacity: .2;
+    float: right;
+}
+
+#activityModal .title {
+	display: inline-block;
 }
 
 /*Responsive*/
@@ -4976,6 +5008,14 @@ h1 small {
 
 	.embed-video-container {
 		height: 170px
+	}
+
+	.owl-carousel .item {
+		min-height: 582px;
+	}
+
+	#travelInfoModal .remove{
+	    position: inherit;
 	}
 
 }

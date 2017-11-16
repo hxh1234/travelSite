@@ -223,14 +223,34 @@ $('.image_bck').each(function(){
 	});
 
 	$('.owl-carousel').owlCarousel({
-    loop:true,
+    loop:false,
     margin:10,
-    autoWidth:true,
-    nav:true,
-    items:3
+    autoWidth:false,
+    nav:false,
+    items:3,
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:2
+        },
+        1000:{
+            items:3
+        }
+    }
 })
 
-
+$('#modal-travelInfo-type input[type=radio][name=type]').change(function() {
+    if ($(this).data('value') == 'building') {
+        $("#type2").show();
+		$("#type1").hide();
+    }
+    else {
+	    $("#type1").show();
+		$("#type2").hide();
+    }
+});
 
 })(jQuery);
 
@@ -293,9 +313,117 @@ function alertMessage(selector,messages) {
 	var alertMessage = '<div class="alert alert-danger alert-dismissible fade in" role="alert">' +
 						'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>' +
 						'<p><ul>'+messageHTML+'</ul></p>' +
-						'</div>'
+						'</div>';
 	$(selector).prepend(alertMessage);
 }
+
+function addToCarousel(data) {
+	var html = '';
+	var idTravelInfo = $(".owl-carousel").find(".owl-item").size()-1;
+	if(data.type == 'building'){
+		html = '<div class="item"> <div class="item-header"> <i class="fa fa-cutlery"></i> <h5>HOTEL Information<small>Accomodation and Dining</small></h5> <div class="editbtn" data-toggle="modal" data-id="'+idTravelInfo+'" data-target="#travelInfoModal"> <button type="button" class="btn btn-rounded btn-default"><span class="glyphicon glyphicon-edit"></span> Edit</button> </div> </div> <div class="item-info"> <div class="info"> <h5 class="prime">'+data.hotelTitle+'</h5> <p>'+data.hotelDescription+'</p> <a href="'+data.hotelWebSite+'" title="" target="_blank"><i class="fa fa-globe"></i> '+data.hotelWebSite+'</a> </div> </div> </div>';	
+	} else {
+		html = '<div class="item"> <div class="item-header"> <i class="fa fa-'+data.type+'"></i> <h5>'+data.type+' Information<small>Departure and Arrival</small></h5> <div class="editbtn" data-toggle="modal" data-id="'+idTravelInfo+'" data-target="#travelInfoModal"> <button type="button" class="btn btn-rounded btn-default"><span class="glyphicon glyphicon-edit"></span> Edit</button> </div> </div> <!-- end item-header --> <div class="item-info"> <div class="departure"> <h5 class="travel-departure-title">'+data.departTitle+'</h5> <h6>DEPARTURE: <strong class="travel-departure-date">'+moment(data.departDate).format("DD MMM, YYYY")+'</strong></h6> <div class="left"> <h2 class="travel-departure-time-from">'+moment(data.departDate).format("HH.mm")+'</h2> <span class="travel-departure-address-from">'+data.departAddressFrom+'</span> </div> <img class="svg arrPrime" src="images/svg/arrow-right-s.svg" alt=""> <div class="right"> <h2 class="travel-departure-time-to">'+moment(data.departDate).add(data.departDuration.days,"days").add(data.departDuration.hours , "hours").add(data.departDuration.minutes , "minutes").add(data.departDuration.seconds , "seconds").format("HH.mm")+'</h2> <span class="travel-departure-address-to">'+data.departAddressTo+'</span> </div> <div class="clear"></div> </div> <!-- end departure --> <div class="arrival"> <h5 class="travel-arrival-title">'+data.arivalTitle+'</h5> <h6>ARRIVAL: <strong class="travel-arrival-date">'+moment(data.arivalDate).format("DD MMM, YYYY")+'</strong></h6> <div class="left"> <h2 class="travel-arrival-time-from">'+moment(data.arivalDate).format("HH.mm")+'</h2> <span class="travel-arrival-address-from">'+data.arivalAddressFrom+'</span> </div> <img class="svg arrPrime" src="images/svg/arrow-right-s.svg" alt=""> <div class="right"> <h2 class="travel-arrival-time-to">'+moment(data.arivalDate).add(data.arivalDuration.days,"days").add(data.arivalDuration.hours , "hours").add(data.arivalDuration.minutes , "minutes").add(data.arivalDuration.seconds , "seconds").format("HH.mm")+'</h2> <span class="travel-arrival-address-to">'+data.arivalAddressTo+'</span> </div> <div class="clear"></div> </div> <!-- end arrival --> </div> <!-- end item-info --> </div>';
+	}
+	$('.owl-carousel')
+  .trigger('add.owl.carousel', [$(html), $(this).find(".owl-item").size()-1])
+  .trigger('refresh.owl.carousel');
+}
+				
+
+function addActivity() {
+	var activityNumber = $("#activityModal .panel-default").length+1;
+	var dt = new Date();
+	var activityUniqueId = dt.getHours()+dt.getMinutes()+dt.getSeconds()+dt.getMilliseconds();
+	var activityHtml = '<div class="panel panel-default"> <div class="panel-heading" role="tab" id="headingOne"> <div class="title"> <h4 class="panel-title"> <a role="button" data-toggle="collapse" data-parent="#accordion" href="#act'+activityUniqueId+'" aria-expanded="true" aria-controls="collapseOne"> Activity'+activityNumber+' </a> </h4> </div> <button type="button" class="delete"><span>&times;</span></button> </div> <div id="act'+activityUniqueId+'" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne"> <div class="panel-body"> <div class="form-horizontal"> <ul class="nav nav-tabs"> <li class="active"><a data-toggle="tab" href="#descriptionTab">Description</a></li> <li><a data-toggle="tab" href="#timeTab">Time</a></li> <li><a data-toggle="tab" href="#otherTab">Other</a></li> </ul> <div class="tab-content"> <div id="descriptionTab" class="tab-pane fade in active"> <div class="form-group form-group-sm"> <label class="col-sm-2 control-label" for="modal-acivity-name">Activity</label> <div class="col-sm-8"> <input class="form-control" type="text" id="modal-acivity-name" placeholder="add a title of acivity here..."/> </div> </div> <div class="form-group form-group-sm"> <label class="col-sm-2 control-label" for="modal-acivity-desc">Description</label> <div class="col-sm-8"> <textarea class="form-control" rows="3" id="modal-acivity-desc" placeholder="add a description..."></textarea> </div> </div> <div class="form-group form-group-sm"> <label class="col-sm-2 control-label" for="modal-acivity-day">Day</label> <div class="col-sm-8"> <div class="input-group"> <input type="number" id="modal-acivity-day" class="form-control" placeholder="1" value="1" pattern="\d*" min="1" max="5"> </div> </div> </div> </div> <div id="timeTab" class="tab-pane fade"> <div class="form-group form-group-sm"> <label class="col-sm-2 control-label" for="modal-acivity-duration">Duration</label> <div class="col-sm-8"> <div class="col-sm-12"> <div class="input-group"> <input type="text" class="form-control" id="modal-acivity-duration"> </div> </div> </div> </div> <div class="form-group form-group-sm"> <label class="col-sm-2 control-label" for="modal-acivity-time">Heurs :</label> <div class="col-sm-8"> <div class="col-sm-6"> <div class="input-group" id="modal-acivity-time1"> <input type="text" class="form-control" /> <span class="input-group-addon"> <span class="glyphicon glyphicon-time"></span> </span> </div> </div> <div class="col-sm-6"> <div class="input-group" id="modal-acivity-time2" > <input type="text" class="form-control"/> <span class="input-group-addon"> <span class="glyphicon glyphicon-time"></span> </span> </div> </div> </div> </div> <div class="form-group form-group-sm"> <label class="col-sm-2 control-label" for="modal-acivity-time-summer">Summer :</label> <div class="col-sm-8"> <div class="col-sm-6"> <div class="input-group" id="modal-acivity-time1-summer" > <input type="text" class="form-control" /> <span class="input-group-addon"> <span class="glyphicon glyphicon-time"></span> </span> </div> </div> <div class="col-sm-6"> <div class="input-group" id="modal-acivity-time2-summer"> <input type="text" class="form-control" /> <span class="input-group-addon"> <span class="glyphicon glyphicon-time"></span> </span> </div> </div> </div> </div> </div> <div id="otherTab" class="tab-pane fade"> <div class="form-group form-group-sm"> <label class="col-sm-2 control-label" for="modal-acivity-address">Address</label> <div class="col-sm-8"> <input class="form-control" type="text" id="modal-acivity-adress" placeholder="add adress..."/> </div> </div> <div class="form-group form-group-sm"> <label class="col-sm-2 control-label" for="modal-acivity-price">Price</label> <div class="col-sm-8"> <div class="input-group"> <input type="text" class="form-control" id="modal-acivity-price" placeholder="add your trip price ..." aria-describedby="basic-price" pattern="\d*" min="0"> <div class="input-group-addon" id="basic-price">$</div> </div> </div> </div> <div class="form-group form-group-sm"> <label class="col-sm-2 control-label" for="modal-description-age">Age</label> <div id="modal-description-age" class="btn-group col-sm-10" data-toggle="buttons"> <label class="btn btn-default btn-rounded"> <input type="radio" name="age" data-value="3" autocomplete="off"> +3 </label> <label class="btn btn-default btn-rounded"> <input type="radio" name="age" data-value="5" autocomplete="off"> +5 </label> <label class="btn btn-default btn-rounded"> <input type="radio" name="age" data-value="12" autocomplete="off"> +12 </label> <label class="btn btn-default btn-rounded"> <input type="radio" name="age" data-value="18" autocomplete="off"> +18 </label> <label class="btn btn-default btn-rounded active"> <input type="radio" name="age" data-value="All" autocomplete="off" checked> All </label> </div> </div> </div> </div> </div> </div> </div> </div>';
+	$("#activityModal .panel-group").append(activityHtml);
+	$(".panel-default .delete").click(function() {
+		if ($("#activityModal .panel-default").length > 1) {
+			$(this).parents(".panel-default").remove();
+		}
+	});
+}
+
+function getDuration(selector) {
+	var duration={"days" :$($(selector).next().find(".bdp-block")[0]).find("span:first").text(),
+					"hours" :$($(selector).next().find(".bdp-block")[1]).find("span:first").text(),
+					"minutes" :$($(selector).next().find(".bdp-block")[2]).find("span:first").text(),
+					"seconds" : $($(selector).next().find(".bdp-block")[3]).find("span:first").text()};
+	return duration;
+}
+
+function getDurationString(selector) {
+	var durationString="";
+	var days = $($(selector).next().find(".bdp-block")[0]).find("span:first").text();
+	var hours = $($(selector).next().find(".bdp-block")[1]).find("span:first").text();
+	var minutes = $($(selector).next().find(".bdp-block")[2]).find("span:first").text();
+	var seconds = $($(selector).next().find(".bdp-block")[3]).find("span:first").text();
+	if(days != 0){
+		durationString = durationString + days+"D"+" ";
+	}
+	if(hours != 0){
+		durationString = durationString + hours+"H"+" ";
+	}
+	if(minutes != 0){
+		durationString = durationString + minutes+"MIN"+" ";
+	}
+	if(seconds != 0){
+		durationString = durationString + seconds+"S"+" ";
+	}
+
+	return durationString;
+}
+
+function resetpopinTravelInfo() {
+	$("#modal-travelInfo-title-depart").val("");
+	$("#modal-travelInfo-date-depart input").val("");
+	$("#modal-travelInfo-adress-depart-from").val("");
+	$("#modal-travelInfo-adress-depart-to").val("");
+	$("#modal-travelInfo-title-arival").val("");
+	$("#modal-travelInfo-date-arival input").val("");
+	$("#modal-travelInfo-adress-arival-from").val("");
+	$("#modal-travelInfo-adress-arival-to").val("");
+	$("#modal-travelInfo-title-hotel").val("");
+	$("#modal-travelInfo-desc-hotel").val("");
+	$("#modal-travelInfo-website-hotel").val("");
+	$($("#modal-travelInfo-duration-depart").next().find(".bdp-block")[0]).find("span:first").text("0");
+	$($("#modal-travelInfo-duration-depart").next().find(".bdp-block")[1]).find("span:first").text("0");
+	$($("#modal-travelInfo-duration-depart").next().find(".bdp-block")[2]).find("span:first").text("0");
+	$($("#modal-travelInfo-duration-depart").next().find(".bdp-block")[3]).find("span:first").text("0");
+	$($("#modal-travelInfo-duration-arival").next().find(".bdp-block")[0]).find("span:first").text("0");
+	$($("#modal-travelInfo-duration-arival").next().find(".bdp-block")[1]).find("span:first").text("0");
+	$($("#modal-travelInfo-duration-arival").next().find(".bdp-block")[2]).find("span:first").text("0");
+	$($("#modal-travelInfo-duration-arival").next().find(".bdp-block")[3]).find("span:first").text("0");
+}
+
+$('#exampleModal').on('show.bs.modal', function (event) {
+	var button = $(event.relatedTarget) // Button that triggered the modal
+	var recipient = button.data('whatever') // Extract info from data-* attributes
+	// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+	// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+	var modal = $(this)
+	modal.find('.modal-title').text('New message to ' + recipient)
+	modal.find('.modal-body input').val(recipient)
+})
+
+$('#modal-acivity-name').bind('input', function() {
+	var title = $(this).parents(".panel-default").find(".panel-heading .title a");
+    $(title).text($(this).val());
+    if( $(title).text().trim() == "") {
+    	 $(title).text("Activity");
+    }
+});
+
+$(".panel-default .delete").click(function() {
+	if ($("#activityModal .panel-default").length > 1) {
+		$(this).parents(".panel-default").remove();
+	}
+});
+
+$("#addNewActivity").click(function() {
+	addActivity();
+});
+
 
 //Maps
 function updateControls(addressComponents) {
@@ -314,7 +442,18 @@ $(function () {
         format: 'DD-MM-YYYY',
         minDate: Date.now()
     });
+	$('[id^=modal-acivity-time]').datetimepicker({
+		format: 'LT'
+	});
+	$('[id^=modal-travelInfo-date]').datetimepicker({
+        viewMode: 'years',
+        minDate: Date.now()
+    });
+
+    $('#modal-acivity-duration').durationPicker();
+    $('[id^=modal-travelInfo-duration]').durationPicker();
 });
+
 
 /*
 @Request
@@ -330,6 +469,28 @@ slogan
 }
 */
 var edit_trip_intro_url = "edit/trip/introduction"; //POST
+
+/*
+@Request
+type
+departDate
+departDuration
+departAddress
+arivalDate
+arivalDuration
+arivalAddress
+hotelTitle
+hotelDescription
+hotelWebSite
+
+@Response
+{
+    "content": {},
+    "status": "ok",
+    "message": ["message1","message2","message3"]
+}
+*/
+var edit_trip_travelInfo_url = "https://api.ipify.org?format=json";//"edit/trip/travelInfo"; //POST
 
 
 /*
@@ -485,6 +646,53 @@ $('#introModal .save').click(function(){
 				$("#intro .intro-slogan").text($("#modal-intro-slogan").val());
 				$("#welcome .description-place").text($("#modal-intro-place").val());
 				myIntroDropzone.processQueue();
+			} else {
+				alertMessage($("#introModal .modal-body"),response.messages);
+			}
+		}
+	});   
+	
+});
+
+$('#travelInfoModal .save').click(function(){
+	var dataToSend={"type" :$("#modal-travelInfo-type input[name='type']:checked").data().value,
+					"departTitle" : $("#modal-travelInfo-title-depart").val(),
+					"departDate" : $("#modal-travelInfo-date-depart input").val(),
+					"departDuration" :getDurationString($("#modal-travelInfo-duration-depart")) ,
+					"departAddressFrom" : $("#modal-travelInfo-adress-depart-from").val(),
+					"departAddressTo" : $("#modal-travelInfo-adress-depart-to").val(),
+					"arivalTitle" : $("#modal-travelInfo-title-arival").val(),
+					"arivalDate" : $("#modal-travelInfo-date-arival input").val(),
+					"arivalDuration" :getDurationString($("#modal-travelInfo-duration-arival")) ,
+					"arivalAddressFrom" : $("#modal-travelInfo-adress-arival-from").val(),
+					"arivalAddressTo" : $("#modal-travelInfo-adress-arival-to").val(),
+					"hotelTitle" : $("#modal-travelInfo-title-hotel").val(),
+					"hotelDescription" : $("#modal-travelInfo-desc-hotel").val(),
+					"hotelWebSite" : $("#modal-travelInfo-website-hotel").val()};    
+
+    $.ajax({
+		type: 'GET',
+		url: edit_trip_travelInfo_url,
+		data: dataToSend,
+		success : function(response, statut){ 
+			if(response.ip == "196.75.139.242") {
+				var data={"type" :$("#modal-travelInfo-type input[name='type']:checked").data().value,
+					"departTitle" : $("#modal-travelInfo-title-depart").val(),
+					"departDate" : $("#modal-travelInfo-date-depart input").val(),
+					"departDuration" :getDuration($("#modal-travelInfo-duration-depart")) ,
+					"departAddressFrom" : $("#modal-travelInfo-adress-depart-from").val(),
+					"departAddressTo" : $("#modal-travelInfo-adress-depart-to").val(),
+					"arivalTitle" : $("#modal-travelInfo-title-arival").val(),
+					"arivalDate" : $("#modal-travelInfo-date-arival input").val(),
+					"arivalDuration" :getDuration($("#modal-travelInfo-duration-arival")) ,
+					"arivalAddressFrom" : $("#modal-travelInfo-adress-arival-from").val(),
+					"arivalAddressTo" : $("#modal-travelInfo-adress-arival-to").val(),
+					"hotelTitle" : $("#modal-travelInfo-title-hotel").val(),
+					"hotelDescription" : $("#modal-travelInfo-desc-hotel").val(),
+					"hotelWebSite" : $("#modal-travelInfo-website-hotel").val()};   
+				addToCarousel(data);
+				$('#travelInfoModal').modal('hide');
+				resetpopinTravelInfo();
 			} else {
 				alertMessage($("#introModal .modal-body"),response.messages);
 			}

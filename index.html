@@ -25,6 +25,7 @@
 
     <!-- datetimepicker CSS -->
     <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="css/jquery-duration-picker.css">
 
     <!-- Theme CSS -->
     <link href="css/style.css" rel="stylesheet">
@@ -32,7 +33,6 @@
     <!-- Fonts -->
     <link href='fonts/open-sans.css' rel='stylesheet' type='text/css'>
     <link href='fonts/oswald.css' rel='stylesheet' type='text/css'>
-
 </head>
 <body class="red_title rounded">
 
@@ -143,6 +143,9 @@
                             <div class="item-header">
                                 <i class="fa fa-train"></i>
                                 <h5>Cruise Information<small>Departure and Arrival</small></h5>
+                                <div class="editbtn" data-toggle="modal" data-id="0" data-target="#travelInfoModal">      
+                                    <button type="button" class="btn btn-rounded btn-default"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+                                </div>
                             </div>
                             <!-- end item-header -->
                             <div class="item-info">
@@ -179,126 +182,9 @@
                             </div>
                             <!-- end item-info -->
                         </div>
-                        <!-- ::: Start item ::: -->
-                         <!-- ::: Start item ::: -->
-                        <div class="item">
-                            <div class="item-header">
-                                <i class="fa fa-plane"></i>
-                                <h5>Cruise Information<small>Departure and Arrival</small></h5>
-                            </div>
-                            <!-- end item-header -->
-                            <div class="item-info">
-                                <div class="departure">
-                                    <h5>Royal Cruise 1234</h5>
-                                    <h6>DEPARTURE: <strong class=''>25 JAN, 2018</strong></h6>
-                                    <div class="left">
-                                        <h2 class=''>09.30</h2>
-                                        Royal Port, USA                    
-                                    </div>
-                                    <img class="svg arrPrime" src="images/svg/arrow-right-s.svg" alt="">
-                                    <div class="right">
-                                        <h2 class=''>02.30</h2>
-                                        Royal Port, UK                    
-                                    </div>
-                                    <div class="clear"></div>
-                                </div>
-                                <!-- end departure -->
-                                <div class="arrival">
-                                    <h5>Royal Cruise 5678</h5>
-                                    <h6>ARRIVAL: <strong class=''>30 JAN, 2018</strong></h6>
-                                    <div class="left">
-                                        <h2 class=''>03.30</h2>
-                                        Royal Port, USA                    
-                                    </div>
-                                    <img class="svg arrPrime" src="images/svg/arrow-left-s.svg"  alt="">
-                                    <div class="right">
-                                        <h2 class=''>14.30</h2>
-                                        Royal Port, UK                    
-                                    </div>
-                                    <div class="clear"></div>
-                                </div>
-                                <!-- end arrival -->           
-                            </div>
-                            <!-- end item-info -->
-                        </div>
-                        <!-- ::: Start item ::: -->
-                        <div class="item">
-                            <div class="item-header">
-                                <i class="fa fa-ship"></i>
-                                <h5>Cruise Information<small>Departure and Arrival</small></h5>
-                            </div>
-                            <!-- end item-header -->
-                            <div class="item-info">
-                                <div class="departure">
-                                    <h5>Royal Cruise 1234</h5>
-                                    <h6>DEPARTURE: <strong class=''>25 JAN, 2018</strong></h6>
-                                    <div class="left">
-                                        <h2 class=''>09.30</h2>
-                                        Royal Port, USA                    
-                                    </div>
-                                    <img class="svg arrPrime" src="images/svg/arrow-right-s.svg" alt="">
-                                    <div class="right">
-                                        <h2 class=''>02.30</h2>
-                                        Royal Port, UK                    
-                                    </div>
-                                    <div class="clear"></div>
-                                </div>
-                                <!-- end departure -->
-                                <div class="arrival">
-                                    <h5>Royal Cruise 5678</h5>
-                                    <h6>ARRIVAL: <strong class=''>30 JAN, 2018</strong></h6>
-                                    <div class="left">
-                                        <h2 class=''>03.30</h2>
-                                        Royal Port, USA                    
-                                    </div>
-                                    <img class="svg arrPrime" src="images/svg/arrow-left-s.svg"  alt="">
-                                    <div class="right">
-                                        <h2 class=''>14.30</h2>
-                                        Royal Port, UK                    
-                                    </div>
-                                    <div class="clear"></div>
-                                </div>
-                                <!-- end arrival -->           
-                            </div>
-                            <!-- end item-info -->
-                        </div>
                         <!-- ::: End item ::: -->
                         <!-- ::: Start item ::: -->
-                        <div class="item">
-                            <div class="item-header">
-                                <i class="fa fa-cutlery"></i>
-                                <h5>HOTEL Information<small>Accomodation and Dining</small></h5>
-                            </div>
-                            <!-- end item-header -->
-                            <div class="item-info">
-                                <div class="info">
-                                    <h5 class="prime">SpiceHub</h5>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipi scing elit. Donec feugiat iaculis tortor molestie. Nunc imperdiet commodo nunc, a porta eros iaculis sit amet iaculis tortor molestie iaculis tortor molestie.</p>
-                                    <a href="http://www.grandhotelinparis.com/" title="" target="_blank"><i class="fa fa-globe"></i> www.grandhotelinparis.com</a>
-                                </div>
-                            </div>
-                            <!-- end item-info -->
-                        </div>
-                        <!-- ::: End item ::: -->
-                        <!-- ::: Start item ::: -->
-                        <div class="item">
-                            <div class="item-header">
-                                <i class="fa fa-cutlery"></i>
-                                <h5>HOTEL Information<small>Accomodation and Dining</small></h5>
-                            </div>
-                            <!-- end item-header -->
-                            <div class="item-info">
-                                <div class="info">
-                                    <h5 class="prime">SpiceHub</h5>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipi scing elit. Donec feugiat iaculis tortor molestie. Nunc imperdiet commodo nunc, a porta eros iaculis sit amet iaculis tortor molestie iaculis tortor molestie.</p>
-                                    <a href="http://www.grandhotelinparis.com/" title="" target="_blank"><i class="fa fa-globe"></i> www.grandhotelinparis.com</a>
-                                </div>
-                            </div>
-                            <!-- end item-info -->
-                        </div>
-                        <!-- ::: End item ::: -->
-                        <!-- ::: Start item ::: -->
-                        <div class="item add-new text-center">
+                        <div class="item add-new text-center"  data-toggle="modal" data-target="#travelInfoModal">
                             <h5 class="prime"><strong>(Click to add ...)</strong></h5>
                         </div>
                         <!-- ::: End item ::: -->
@@ -641,6 +527,149 @@
         </div>
     </div>
 
+
+
+    <!-- travel info -->
+    <div class="modal fade" id="travelInfoModal" tabindex="-1" role="dialog" aria-labelledby="travelInfoModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+
+                    <div class="bs-callout " id="callout-help-text-accessibility">
+                        <div class="form-horizontal">
+                            <div class="form-group  form-group-sm">
+                                <label class="col-sm-3 control-label" for="modal-travelInfo-type">Mode of transport</label>
+                                <div id="modal-travelInfo-type" class="btn-group col-sm-9" data-toggle="buttons">
+                                    <label class="btn btn-default btn-rounded active">
+                                        <input type="radio" name="type" data-value="plane" autocomplete="off" checked="checked">Plane
+                                    </label>
+                                    <label class="btn btn-default btn-rounded">
+                                        <input type="radio" name="type" data-value="train" autocomplete="off">Train
+                                    </label>
+                                    <label class="btn btn-default btn-rounded">
+                                        <input type="radio" name="type" data-value="ship" autocomplete="off">Ship
+                                    </label>
+                                    <label class="btn btn-default btn-rounded">
+                                        <input type="radio" name="type" data-value="building" autocomplete="off">Hotel
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="type1">
+                        <div class="bs-callout bs-callout-info" id="callout-help-text-accessibility">
+                            <div class="form-horizontal">
+                                <div class="form-group  form-group-sm">
+                                    <label class="col-sm-2 control-label" for="modal-travelInfo-title-depart">Title </label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" type="text" id="modal-travelInfo-title-depart" placeholder="add title for travel depart ..."/>
+                                    </div>
+                                </div>
+                                <div class="form-group  form-group-sm">
+                                    <label class="col-sm-2 control-label" for="modal-travelInfo-date-depart">Depart date</label>
+                                    <div class="col-sm-10">
+                                        <div class='input-group date' id='modal-travelInfo-date-depart'>
+                                            <input type='text' class="form-control" />
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group  form-group-sm">
+                                    <label class="col-sm-2 control-label" for="modal-travelInfo-duration-depart">Duration </label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="modal-travelInfo-duration-depart">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group  form-group-sm">
+                                    <label class="col-sm-2 control-label" for="modal-travelInfo-address-depart-from">Adress </label>
+                                    <div class="col-sm-5">
+                                        <input class="form-control" type="text" id="modal-travelInfo-adress-depart-from" placeholder="From..."/>
+                                    </div>
+
+                                    <div class="col-sm-5">
+                                        <input class="form-control" type="text" id="modal-travelInfo-adress-depart-to" placeholder="To ..."/>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bs-callout bs-callout-warning" id="callout-help-text-accessibility">
+                            <div class="form-horizontal">
+                                <div class="form-group  form-group-sm">
+                                    <label class="col-sm-2 control-label" for="modal-travelInfo-title-arival">Title </label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" type="text" id="modal-travelInfo-title-arival" placeholder="add title for travel arival ..."/>
+                                    </div>
+                                </div>
+                                <div class="form-group  form-group-sm">
+                                    <label class="col-sm-2 control-label" for="modal-travelInfol-date-arival">Arrival date</label>
+                                    <div class="col-sm-10">
+                                        <div class='input-group date' id='modal-travelInfo-date-arival'>
+                                            <input type='text' class="form-control" />
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group  form-group-sm">
+                                    <label class="col-sm-2 control-label" for="modal-travelInfo-duration-arival">Duration </label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group">
+                                        <input type="text" id="modal-travelInfo-duration-arival" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group  form-group-sm">
+                                    <label class="col-sm-2 control-label" for="modal-travelInfo-address-arival">Address </label>
+                                    <div class="col-sm-5">
+                                        <input class="form-control" type="text" id="modal-travelInfo-adress-arival-from" placeholder="From ..."/>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <input class="form-control" type="text" id="modal-travelInfo-adress-arival-to" placeholder="To ..."/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="type2" style="display: none;">
+                        <div class="bs-callout bs-callout-danger" id="callout-help-text-accessibility">
+                            <div class="form-horizontal">
+                                <div class="form-group  form-group-sm">
+                                    <label class="col-sm-2 control-label" for="modal-travelInfo-title-hotel">Title </label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" type="text" id="modal-travelInfo-title-hotel" placeholder="add your title ..."/>
+                                    </div>
+                                </div>
+                                <div class="form-group  form-group-sm">
+                                    <label class="col-sm-2 control-label" for="modal-travelInfo-desc-hotel">Description</label>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" rows="5" id="modal-travelInfo-desc-hotel" placeholder="add a description..."></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group  form-group-sm">
+                                    <label class="col-sm-2 control-label" for="modal-travelInfo-website-hotel">Website </label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" type="text" id="modal-travelInfo-website-hotel" placeholder="add a website..."/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger remove">Remove</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary save">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Galeries -->
     <div class="modal fade" id="galleryModal" tabindex="-1" role="dialog" aria-labelledby="galleryModal">
         <div class="modal-dialog" role="document">
@@ -791,6 +820,7 @@
     <!-- datepicker JS -->
     <script src="js/moment.min.js"></script>
     <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/jquery-duration-picker.js"></script>
 
     <!-- Dropzone -->
     <script src="js/dropzone.js"></script>
