@@ -1,4 +1,7 @@
-﻿function refreshImagBackground() {
+﻿//Global var
+var global_travelInfoId;
+
+function refreshImagBackground() {
 $('.image_bck').each(function(){
 		var image = $(this).attr('data-image');
 		var gradient = $(this).attr('data-gradient');
@@ -321,13 +324,23 @@ function addToCarousel(data) {
 	var html = '';
 	var idTravelInfo = $(".owl-carousel").find(".owl-item").size()-1;
 	if(data.type == 'building'){
-		html = '<div class="item"> <div class="item-header"> <i class="fa fa-cutlery"></i> <h5>HOTEL Information<small>Accomodation and Dining</small></h5> <div class="editbtn" data-toggle="modal" data-id="'+idTravelInfo+'" data-target="#travelInfoModal"> <button type="button" class="btn btn-rounded btn-default"><span class="glyphicon glyphicon-edit"></span> Edit</button> </div> </div> <div class="item-info"> <div class="info"> <h5 class="prime">'+data.hotelTitle+'</h5> <p>'+data.hotelDescription+'</p> <a href="'+data.hotelWebSite+'" title="" target="_blank"><i class="fa fa-globe"></i> '+data.hotelWebSite+'</a> </div> </div> </div>';	
+		html = '<div class="item"> <div class="item-header" data-type="'+data.type+'"> <i class="fa fa-cutlery"></i> <h5>HOTEL Information<small>Accomodation and Dining</small></h5> <div class="editbtn" data-toggle="modal" data-id="'+idTravelInfo+'" data-target="#travelInfoModal"> <button type="button" class="btn btn-rounded btn-default"><span class="glyphicon glyphicon-edit"></span> Edit</button> </div> </div> <div class="item-info"> <div class="info"> <h5 class="prime travel-hotel-title">'+data.hotelTitle+'</h5> <p class="travel-hotel-desc">'+data.hotelDescription+'</p> <a href="'+data.hotelWebSite+'" class="travel-hotel-site" title="" target="_blank"><i class="fa fa-globe"></i> '+data.hotelWebSite+'</a> </div> </div> </div>';	
 	} else {
-		html = '<div class="item"> <div class="item-header"> <i class="fa fa-'+data.type+'"></i> <h5>'+data.type+' Information<small>Departure and Arrival</small></h5> <div class="editbtn" data-toggle="modal" data-id="'+idTravelInfo+'" data-target="#travelInfoModal"> <button type="button" class="btn btn-rounded btn-default"><span class="glyphicon glyphicon-edit"></span> Edit</button> </div> </div> <!-- end item-header --> <div class="item-info"> <div class="departure"> <h5 class="travel-departure-title">'+data.departTitle+'</h5> <h6>DEPARTURE: <strong class="travel-departure-date">'+moment(data.departDate).format("DD MMM, YYYY")+'</strong></h6> <div class="left"> <h2 class="travel-departure-time-from">'+moment(data.departDate).format("HH.mm")+'</h2> <span class="travel-departure-address-from">'+data.departAddressFrom+'</span> </div> <img class="svg arrPrime" src="images/svg/arrow-right-s.svg" alt=""> <div class="right"> <h2 class="travel-departure-time-to">'+moment(data.departDate).add(data.departDuration.days,"days").add(data.departDuration.hours , "hours").add(data.departDuration.minutes , "minutes").add(data.departDuration.seconds , "seconds").format("HH.mm")+'</h2> <span class="travel-departure-address-to">'+data.departAddressTo+'</span> </div> <div class="clear"></div> </div> <!-- end departure --> <div class="arrival"> <h5 class="travel-arrival-title">'+data.arivalTitle+'</h5> <h6>ARRIVAL: <strong class="travel-arrival-date">'+moment(data.arivalDate).format("DD MMM, YYYY")+'</strong></h6> <div class="left"> <h2 class="travel-arrival-time-from">'+moment(data.arivalDate).format("HH.mm")+'</h2> <span class="travel-arrival-address-from">'+data.arivalAddressFrom+'</span> </div> <img class="svg arrPrime" src="images/svg/arrow-right-s.svg" alt=""> <div class="right"> <h2 class="travel-arrival-time-to">'+moment(data.arivalDate).add(data.arivalDuration.days,"days").add(data.arivalDuration.hours , "hours").add(data.arivalDuration.minutes , "minutes").add(data.arivalDuration.seconds , "seconds").format("HH.mm")+'</h2> <span class="travel-arrival-address-to">'+data.arivalAddressTo+'</span> </div> <div class="clear"></div> </div> <!-- end arrival --> </div> <!-- end item-info --> </div>';
+		html = '<div class="item"> <div class="item-header" data-type="'+data.type+'"> <i class="fa fa-'+data.type+'"></i> <h5>'+data.type+' Information<small>Departure and Arrival</small></h5> <div class="editbtn" data-toggle="modal" data-id="'+idTravelInfo+'" data-target="#travelInfoModal"> <button type="button" class="btn btn-rounded btn-default"><span class="glyphicon glyphicon-edit"></span> Edit</button> </div> </div> <!-- end item-header --> <div class="item-info"> <div class="departure"> <h5 class="travel-departure-title">'+data.departTitle+'</h5> <h6>DEPARTURE: <strong class="travel-departure-date">'+moment(data.departDate,"DD-MM-YYYY HH:mm").format("DD MMM, YYYY")+'</strong></h6> <div class="left"> <h2 class="travel-departure-time-from">'+moment(data.departDate,"DD-MM-YYYY HH:mm").format("HH.mm")+'</h2> <span class="travel-departure-address-from">'+data.departAddressFrom+'</span> </div> <img class="svg arrPrime" src="images/svg/arrow-right-s.svg" alt=""> <div class="right"> <h2 class="travel-departure-time-to">'+moment(data.departDate,"DD-MM-YYYY HH:mm").add(data.departDuration.days,"days").add(data.departDuration.hours , "hours").add(data.departDuration.minutes , "minutes").add(data.departDuration.seconds , "seconds").format("HH.mm")+'</h2> <span class="travel-departure-address-to">'+data.departAddressTo+'</span> </div> <div class="clear"></div> </div> <!-- end departure --> <div class="arrival"> <h5 class="travel-arrival-title">'+data.arivalTitle+'</h5> <h6>ARRIVAL: <strong class="travel-arrival-date">'+moment(data.arivalDate,"DD-MM-YYYY HH:mm").format("DD MMM, YYYY")+'</strong></h6> <div class="left"> <h2 class="travel-arrival-time-from">'+moment(data.arivalDate,"DD-MM-YYYY HH:mm").format("HH.mm")+'</h2> <span class="travel-arrival-address-from">'+data.arivalAddressFrom+'</span> </div> <img class="svg arrPrime" src="images/svg/arrow-right-s.svg" alt=""> <div class="right"> <h2 class="travel-arrival-time-to">'+moment(data.arivalDate,"DD-MM-YYYY HH:mm").add(data.arivalDuration.days,"days").add(data.arivalDuration.hours , "hours").add(data.arivalDuration.minutes , "minutes").add(data.arivalDuration.seconds , "seconds").format("HH.mm")+'</h2> <span class="travel-arrival-address-to">'+data.arivalAddressTo+'</span> </div> <div class="clear"></div> </div> <!-- end arrival --> </div> <!-- end item-info --> </div>';
 	}
-	$('.owl-carousel')
-  .trigger('add.owl.carousel', [$(html), $(this).find(".owl-item").size()-1])
-  .trigger('refresh.owl.carousel');
+	$('.owl-carousel').trigger('add.owl.carousel', [$(html), $(this).find(".owl-item").size()-1]).trigger('refresh.owl.carousel');
+}
+
+function editTravelInfoCarousel(data) {
+	var html = '';
+	var idTravelInfo = global_travelInfoId;
+	$(".owl-carousel").trigger('remove.owl.carousel', [idTravelInfo]).trigger('refresh.owl.carousel');
+	if(data.type == 'building'){
+		html = '<div class="item"> <div class="item-header" data-type="'+data.type+'"> <i class="fa fa-cutlery"></i> <h5>HOTEL Information<small>Accomodation and Dining</small></h5> <div class="editbtn" data-toggle="modal" data-id="'+idTravelInfo+'" data-target="#travelInfoModal"> <button type="button" class="btn btn-rounded btn-default"><span class="glyphicon glyphicon-edit"></span> Edit</button> </div> </div> <div class="item-info"> <div class="info"> <h5 class="prime travel-hotel-title">'+data.hotelTitle+'</h5> <p class="travel-hotel-desc">'+data.hotelDescription+'</p> <a href="'+data.hotelWebSite+'" class="travel-hotel-site" title="" target="_blank"><i class="fa fa-globe"></i> '+data.hotelWebSite+'</a> </div> </div> </div>';	
+	} else {
+		html = '<div class="item"> <div class="item-header" data-type="'+data.type+'"> <i class="fa fa-'+data.type+'"></i> <h5>'+data.type+' Information<small>Departure and Arrival</small></h5> <div class="editbtn" data-toggle="modal" data-id="'+idTravelInfo+'" data-target="#travelInfoModal"> <button type="button" class="btn btn-rounded btn-default"><span class="glyphicon glyphicon-edit"></span> Edit</button> </div> </div> <!-- end item-header --> <div class="item-info"> <div class="departure"> <h5 class="travel-departure-title">'+data.departTitle+'</h5> <h6>DEPARTURE: <strong class="travel-departure-date">'+moment(data.departDate,"DD-MM-YYYY HH:mm").format("DD MMM, YYYY")+'</strong></h6> <div class="left"> <h2 class="travel-departure-time-from">'+moment(data.departDate,"DD-MM-YYYY HH:mm").format("HH.mm")+'</h2> <span class="travel-departure-address-from">'+data.departAddressFrom+'</span> </div> <img class="svg arrPrime" src="images/svg/arrow-right-s.svg" alt=""> <div class="right"> <h2 class="travel-departure-time-to">'+moment(data.departDate,"DD-MM-YYYY HH:mm").add(data.departDuration.days,"days").add(data.departDuration.hours , "hours").add(data.departDuration.minutes , "minutes").add(data.departDuration.seconds , "seconds").format("HH.mm")+'</h2> <span class="travel-departure-address-to">'+data.departAddressTo+'</span> </div> <div class="clear"></div> </div> <!-- end departure --> <div class="arrival"> <h5 class="travel-arrival-title">'+data.arivalTitle+'</h5> <h6>ARRIVAL: <strong class="travel-arrival-date">'+moment(data.arivalDate,"DD-MM-YYYY HH:mm").format("DD MMM, YYYY")+'</strong></h6> <div class="left"> <h2 class="travel-arrival-time-from">'+moment(data.arivalDate,"DD-MM-YYYY HH:mm").format("HH.mm")+'</h2> <span class="travel-arrival-address-from">'+data.arivalAddressFrom+'</span> </div> <img class="svg arrPrime" src="images/svg/arrow-right-s.svg" alt=""> <div class="right"> <h2 class="travel-arrival-time-to">'+moment(data.arivalDate,"DD-MM-YYYY HH:mm").add(data.arivalDuration.days,"days").add(data.arivalDuration.hours , "hours").add(data.arivalDuration.minutes , "minutes").add(data.arivalDuration.seconds , "seconds").format("HH.mm")+'</h2> <span class="travel-arrival-address-to">'+data.arivalAddressTo+'</span> </div> <div class="clear"></div> </div> <!-- end arrival --> </div> <!-- end item-info --> </div>';
+	}
+	$('.owl-carousel').trigger('add.owl.carousel', [$(html), idTravelInfo]).trigger('refresh.owl.carousel');
 }
 				
 
@@ -375,17 +388,8 @@ function getDurationString(selector) {
 }
 
 function resetpopinTravelInfo() {
-	$("#modal-travelInfo-title-depart").val("");
-	$("#modal-travelInfo-date-depart input").val("");
-	$("#modal-travelInfo-adress-depart-from").val("");
-	$("#modal-travelInfo-adress-depart-to").val("");
-	$("#modal-travelInfo-title-arival").val("");
-	$("#modal-travelInfo-date-arival input").val("");
-	$("#modal-travelInfo-adress-arival-from").val("");
-	$("#modal-travelInfo-adress-arival-to").val("");
-	$("#modal-travelInfo-title-hotel").val("");
-	$("#modal-travelInfo-desc-hotel").val("");
-	$("#modal-travelInfo-website-hotel").val("");
+	$('#travelInfoModal').find('.modal-body input').val("");
+	$('#travelInfoModal').find('.modal-body textarea').val("");
 	$($("#modal-travelInfo-duration-depart").next().find(".bdp-block")[0]).find("span:first").text("0");
 	$($("#modal-travelInfo-duration-depart").next().find(".bdp-block")[1]).find("span:first").text("0");
 	$($("#modal-travelInfo-duration-depart").next().find(".bdp-block")[2]).find("span:first").text("0");
@@ -396,15 +400,99 @@ function resetpopinTravelInfo() {
 	$($("#modal-travelInfo-duration-arival").next().find(".bdp-block")[3]).find("span:first").text("0");
 }
 
-$('#exampleModal').on('show.bs.modal', function (event) {
-	var button = $(event.relatedTarget) // Button that triggered the modal
-	var recipient = button.data('whatever') // Extract info from data-* attributes
-	// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-	// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-	var modal = $(this)
-	modal.find('.modal-title').text('New message to ' + recipient)
-	modal.find('.modal-body input').val(recipient)
-})
+
+function fillPopinTravelInfo(curentItem) {
+
+	var typeHeader = curentItem.find(".item-header").attr("data-type");
+	if(typeHeader==undefined){
+		console.log("uknown typeHeader");
+		return 0;
+	}
+	if(typeHeader == 'building') {
+		$("#modal-travelInfo-type input[type='radio']").prop("checked", false);
+		$("#modal-travelInfo-type input[type='radio'] ").parent().removeClass("active");
+		$("#modal-travelInfo-type input[data-value = 'building']").prop("checked", true);
+		$("#modal-travelInfo-type input[data-value = 'building'] ").parent().addClass("active");
+		$("#modal-travelInfo-title-hotel").val(curentItem.find(".travel-hotel-title").text());
+		$("#modal-travelInfo-desc-hotel").val(curentItem.find(".travel-hotel-desc").text());
+		$("#modal-travelInfo-website-hotel").val(curentItem.find(".travel-hotel-site").text());
+		$("#type2").show();
+		$("#type1").hide();
+	}
+	else{
+		$("#modal-travelInfo-type input[type='radio']").prop("checked", false);
+		$("#modal-travelInfo-type input[type='radio'] ").parent().removeClass("active");
+		$("#modal-travelInfo-type input[data-value = '"+typeHeader+"']").prop("checked", true);
+		$("#modal-travelInfo-type input[data-value = '"+typeHeader+"'] ").parent().addClass("active");
+
+		$("#modal-travelInfo-title-depart").val(curentItem.find(".travel-departure-title").text());
+		$("#modal-travelInfo-date-depart input").val(moment(curentItem.find(".travel-departure-date").text() +" "+curentItem.find(".travel-departure-time-from").text(), "DD MMM, YYYY HH.mm").format("DD-MM-YYYY HH:mm"));
+		$("#modal-travelInfo-adress-depart-from").val(curentItem.find(".travel-departure-address-from").text());
+		$("#modal-travelInfo-adress-depart-to").val(curentItem.find(".travel-departure-address-to").text());
+
+		$("#modal-travelInfo-title-arival").val(curentItem.find(".travel-arrival-title").text());
+		$("#modal-travelInfo-date-arival input").val(moment(curentItem.find(".travel-arrival-date").text() +" "+curentItem.find(".travel-arrival-time-from").text(), "DD MMM, YYYY HH.mm").format("DD-MM-YYYY HH:mm"));
+		$("#modal-travelInfo-adress-arival-from").val(curentItem.find(".travel-arrival-address-from").text());
+		$("#modal-travelInfo-adress-arival-to").val(curentItem.find(".travel-arrival-address-to").text());
+
+		var arrivalMomentFrom= moment(curentItem.find(".travel-arrival-date").text() +" "+curentItem.find(".travel-arrival-time-from").text(), "DD MMM, YYYY HH.mm");
+		var arrivalMomentTo =moment(curentItem.find(".travel-arrival-date").text() +" "+curentItem.find(".travel-arrival-time-to").text(), "DD MMM, YYYY HH.mm");
+		var arrivalDiffmoment = arrivalMomentTo.diff(arrivalMomentFrom);
+		if(arrivalDiffmoment<0){
+			arrivalMomentTo.add(1,"days");
+			arrivalDiffmoment = arrivalMomentTo.diff(arrivalMomentFrom);
+		}
+
+		var dmoment = moment.duration(arrivalDiffmoment, 'milliseconds');
+		var hours = Math.floor(dmoment.asHours());
+		var mins = Math.floor(dmoment.asMinutes()) - hours * 60;
+
+		$($("#modal-travelInfo-duration-arival").next().find(".bdp-block")[1]).find("span:first").text(hours);
+		$($("#modal-travelInfo-duration-arival").next().find(".bdp-block")[2]).find("span:first").text(mins);
+
+		var departureMomentFrom= moment(curentItem.find(".travel-departure-date").text() +" "+curentItem.find(".travel-departure-time-from").text(), "DD MMM, YYYY HH.mm");
+		var departureMomentTo =moment(curentItem.find(".travel-departure-date").text() +" "+curentItem.find(".travel-departure-time-to").text(), "DD MMM, YYYY HH.mm");
+		var departureDiffmoment = departureMomentTo.diff(departureMomentFrom);
+		if(departureDiffmoment<0){
+			departureMomentTo.add(1,"days");
+			departureDiffmoment = departureMomentTo.diff(departureMomentFrom);
+		}
+
+		var dmoment = moment.duration(departureDiffmoment, 'milliseconds');
+		var hours = Math.floor(dmoment.asHours());
+		var mins = Math.floor(dmoment.asMinutes()) - hours * 60;
+
+		$($("#modal-travelInfo-duration-depart").next().find(".bdp-block")[1]).find("span:first").text(hours);
+		$($("#modal-travelInfo-duration-depart").next().find(".bdp-block")[2]).find("span:first").text(mins);
+		$("#type1").show();
+		$("#type2").hide();
+	}
+	
+	
+}
+
+$('#travelInfoModal').on('show.bs.modal', function (event) {
+	var button = $(event.relatedTarget);
+	var id = button.data('id');
+	var curentItem = $(".owl-carousel [data-id='"+id+"']").parent().parent();
+	global_travelInfoId = id;
+	fillPopinTravelInfo(curentItem);
+});
+
+$('#travelInfoModal').on('hidden.bs.modal', function (event) {
+	$(".owl-carousel .item-header .editbtn").each(function( index ) {
+	    $(this).attr('data-id',index);
+	});
+	resetpopinTravelInfo();
+});
+
+$( "body" ).mousemove(function( event ) {
+  $(".owl-carousel .item-header .editbtn").each(function( index ) {
+	    $(this).attr('data-id',index);
+	});
+});
+
+
 
 $('#modal-acivity-name').bind('input', function() {
 	var title = $(this).parents(".panel-default").find(".panel-heading .title a");
@@ -447,11 +535,12 @@ $(function () {
 	});
 	$('[id^=modal-travelInfo-date]').datetimepicker({
         viewMode: 'years',
+        format: 'DD-MM-YYYY hh:mm',
         minDate: Date.now()
     });
 
     $('#modal-acivity-duration').durationPicker();
-    $('[id^=modal-travelInfo-duration]').durationPicker();
+    $('[id^=modal-travelInfo-duration]').durationPicker({ showDays: false,  totalMax: 86399000 /* 1 day */ });
 });
 
 
@@ -469,6 +558,21 @@ slogan
 }
 */
 var edit_trip_intro_url = "edit/trip/introduction"; //POST
+
+/*
+@Request
+id
+
+@Response
+{
+    "content": {},
+    "status": "ok",
+    "message": ["message1","message2","message3"]
+}
+*/
+var delete_trip_travelInfo_url = "delete/trip/travelInfo"; //DELETE
+
+
 
 /*
 @Request
@@ -490,7 +594,7 @@ hotelWebSite
     "message": ["message1","message2","message3"]
 }
 */
-var edit_trip_travelInfo_url = "https://api.ipify.org?format=json";//"edit/trip/travelInfo"; //POST
+var edit_trip_travelInfo_url = "edit/trip/travelInfo"; //POST
 
 
 /*
@@ -654,6 +758,26 @@ $('#introModal .save').click(function(){
 	
 });
 
+
+$('#travelInfoModal .remove').click(function(){
+	var dataToSend={"id" : global_travelInfoId} ;       
+    $.ajax({
+		type: 'GET',
+		url: delete_trip_travelInfo_url,
+		data: dataToSend,
+		success : function(response, statut){ 
+			if(response.status == "ok") {
+				$(".owl-carousel").trigger('remove.owl.carousel', [global_travelInfoId]).trigger('refresh.owl.carousel');
+				$('#travelInfoModal ').modal('hide');
+			} else {
+				alertMessage($("#travelInfoModal .modal-body"),response.messages);
+			}
+		}
+	});   
+	
+});
+
+
 $('#travelInfoModal .save').click(function(){
 	var dataToSend={"type" :$("#modal-travelInfo-type input[name='type']:checked").data().value,
 					"departTitle" : $("#modal-travelInfo-title-depart").val(),
@@ -675,7 +799,7 @@ $('#travelInfoModal .save').click(function(){
 		url: edit_trip_travelInfo_url,
 		data: dataToSend,
 		success : function(response, statut){ 
-			if(response.ip == "196.75.139.242") {
+			if(response.status == "ok") {
 				var data={"type" :$("#modal-travelInfo-type input[name='type']:checked").data().value,
 					"departTitle" : $("#modal-travelInfo-title-depart").val(),
 					"departDate" : $("#modal-travelInfo-date-depart input").val(),
@@ -689,12 +813,17 @@ $('#travelInfoModal .save').click(function(){
 					"arivalAddressTo" : $("#modal-travelInfo-adress-arival-to").val(),
 					"hotelTitle" : $("#modal-travelInfo-title-hotel").val(),
 					"hotelDescription" : $("#modal-travelInfo-desc-hotel").val(),
-					"hotelWebSite" : $("#modal-travelInfo-website-hotel").val()};   
-				addToCarousel(data);
+					"hotelWebSite" : $("#modal-travelInfo-website-hotel").val()}; 
+				if(global_travelInfoId ==undefined){
+					addToCarousel(data);
+				} else {
+					editTravelInfoCarousel(data);
+				}
+				
 				$('#travelInfoModal').modal('hide');
 				resetpopinTravelInfo();
 			} else {
-				alertMessage($("#introModal .modal-body"),response.messages);
+				alertMessage($("#travelInfoModal .modal-body"),response.messages);
 			}
 		}
 	});   
