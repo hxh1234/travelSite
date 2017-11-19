@@ -1,7 +1,7 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
-
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,6 +25,7 @@
 
     <!-- datetimepicker CSS -->
     <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="css/jquery-duration-picker.css">
 
     <!-- Theme CSS -->
     <link href="css/style.css" rel="stylesheet">
@@ -32,9 +33,8 @@
     <!-- Fonts -->
     <link href='fonts/open-sans.css' rel='stylesheet' type='text/css'>
     <link href='fonts/oswald.css' rel='stylesheet' type='text/css'>
-
 </head>
-<body class="red_title rounded"  data-spy="scroll" data-target=".navbar" data-offset="50" >
+<body class="red_title rounded"  data-spy="scroll" data-target=".navbar" data-offset="60" >
 
     <!-- Passpartu -->
     <div class="passpartu passpartu_left"></div>
@@ -45,747 +45,570 @@
 
 <div class="page" id="page">
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="#">WebSiteName</a>
-    </div>
-    <div>
-      <div class="collapse navbar-collapse" id="myNavbar">
-        <ul class="nav navbar-nav">
-          <li><a href="#intro">Section 1</a></li>
-          <li><a href="#welcome">Section 2</a></li>
-          <li><a href="#travelInfo">Section 3</a></li>
-          <li><a href="#maps-gallery">Section 3</a></li>
-          <li><a href="#others">Section 3</a></li>
 
-        </ul>
-      </div>
-    </div>
-  </div>
-</nav>    
+    <!-- Header -->
+    <header class="white_bck">
 
-    <!--Intro-->
-    <section class="intro" id="intro">
+        <!-- Header Top Line -->
+        <div class="top_line clearfix">
 
-            <!-- Down Arrow -->
-            <a href="#welcome" class="down_block go"><i class="fa fa-angle-down"></i></a>
+            <!-- Address -->
+            <span class="tl_item">
+                <span class="ti ti-location-pin"></span> Rabat Agdal, state pace 128 , Morocco
+            </span>
 
-            <!--Item-->
-            <div class="intro_item active">
+            <!-- Mail -->
+            <span class="tl_item">
+                <span class="ti ti-email"></span> <a href="mailto:support@theberg.com">monemail@session.com</a>
+            </span>
 
-                <!--Over-->
-                <div class="over" data-opacity="0.2" data-color="#000"></div>
+            <!-- Phone -->
+            <div class="pull-right">
+                <span class="tl_item">
+                    <span class="ti ti-mobile"></span> +212 (0) 66666666
+                </span>
+            </div>
+                  
+        </div>
+        <!-- Top Line End -->
 
-                <div class="editbtn" data-toggle="modal" data-target="#introModal">      
-                    <button type="button" class="btn btn-rounded btn-default"><span class="glyphicon glyphicon-edit"></span> Edit</button>
-                </div>
+        <!-- Logo -->
+        <div class="logo pull-left">
+            <a href="./index.html"><b>Home page</b></a>
+        </div>
 
-                <div class="into_back image_bck" data-image="images/background.jpg"></div>
-                <div class="text_content">
+        <!-- Header Buttons -->
+        <div class="header_btns_wrapper">
+             
 
-                    <div class="intro_text intro_text_cc text-left text_up" data-color="#d30017">
-                        <span class="great_title intro-place">Djamaa lfna</span>
-                        <span class="great_title intro-city"><b>Marrakech</b></span>
-                        <span class="great_subtitle great_subtitle_big intro-slogan">special offer for the whole family</span>
-                    </div>
+            <!-- Main Menu Btn -->
+            <div class="main_menu"><i class="ti-menu"></i><i class="ti-close"></i></div>
+            
+            <!-- Sub Menu -->
+            <div class="navbar sub_menu">
+                <div class="sub_cont">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#day1">Day 1</a></li>
+                        <li><a href="#day2">Day 2</a></li>
+                        <li><a href="#day3">Day 3</a></li>
+                        <li><a href="#day4">Day 4</a></li>
+                        <li><a href="#day5">Day 5</a></li>
+                    </ul>
                 </div>
             </div>
-    </section>
-    <!--Intro End-->
+            <!-- Sub Menu End -->
 
-    <!--Welcome-->
-    <section class="section_description boxes simple_title text-center" id="welcome">
-        <h4 class="sml_abs_title in"><span class="countdown" data-year="2017" data-month="12" data-day="24"></span></h4>
-        <div class="editbtn" data-toggle="modal" data-target="#descriptionModal">      
-            <button type="button" class="btn btn-rounded btn-default"><span class="glyphicon glyphicon-edit"></span> Edit</button>
         </div>
+        <!-- Header Buttons End -->
+        
+        <!-- Up Arrow -->
+        <a href="#page" class="up_block go"><i class="fa fa-angle-up"></i></a>
+        <div class="editbtnActivity" data-toggle="modal" data-target="#activityModal">      
+            <button type="button" class="btn btn-rounded btn-default">
+                <span class="glyphicon glyphicon-edit"></span> Edit
+            </button>
+        </div>
+    </header>
+    <!-- Header End -->
+    
+<!--Intro-->
+<section class="intro" >
+
+     <!-- Down Arrow -->
+    <a href="#day1" class="down_block go"><i class="fa fa-angle-down"></i></a>
+
+    <!--Item-->
+    <div class="intro_item">
+
+        <div class="text_content">
+            <div class="archi_img image_bck" data-image="images/background.jpg"></div>
+            <div class="intro_text intro_text_rt text-left">
+                <span class="great_title">SPECIAL OFFER FOR THE WHOLE FAMILY</span>
+            </div>              
+        </div>  
+    </div>
+    
+ 
+</section>
+<!--Intro End-->
+     
+<section id="day1" >
+    <!-- Text Block-->
+    <div class="boxes day">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-12 bordered_block image_bck">
-                    <div class="container">
-
-                        <div class="row wow fadeInUp">
-                            <div class="col-md-6 col-sm-12 col-xs-12">
-                                <h1>Welcome<small>to <span class="description-place">Djamaa lfna</span></small></h1>
-                            </div>
-                            <div class="description description-desc col-md-6 col-sm-12 col-xs-12">
-                                This grand square adjoining the Palace Jemma El Fna is a pot pourri of smells, colors and textures. Like a neighborhood out of an exotic movie, this place is full of esoteric and simply unbelievable sights and sounds. You’ll see old morocco men enjoying a game of cards over a shisha in one corner, you’ll encounter over-zealous shopkeepers and street chefs vying for your attention, you’ll come across fascinating magic potions, alladin-style lamps and magic carpets on sale and yet you are the exotic foreigner for them!
-                                Djemaa el Fna can be many things to a tourist ; a chaotic but entertaining circus, an overwhelming experience or an exasperating confrontation with the reality of Morocco. For all this and much more, this place warrants a visit. Don’t miss out on the scrumptious local cuisine on offer at the innumerable food stalls. After all, the best way to visit a new place is through your stomach!
-       
-                            </div>
-                             <div class="separator clear"></div>
-                        </div>
-                        <div class="additional-info wow fadeInUp row">
-                            <!-- Item -->
-                            <div class="col-md-3 text-center">
-                                <div class="icon"><span class="fa fa-calendar"></span></div>
-                                <h3>Adventure Begins</h3> <strong class="description-date">25 Jan 2018</strong> 
-                            </div>
-
-                            <!-- Item -->
-                             <div class="col-md-3 text-center">
-                                <div class="icon"><span class="fa fa-bullhorn"></span></div>
-                                <h3>Duration</h3> <strong><span class="description-duration">8</span> days</strong> 
-                                
-                            </div>
-
-                            <!-- Item -->
-                             <div class="col-md-3 text-center">
-                                <div class="icon"><span class="fa fa-child"></span></div>
-                                <h3>Age</h3> <strong>+<span class="description-age">3</span> years</strong> 
-                            </div>
-
-                            <!-- Item -->
-                             <div class="col-md-3 text-center">
-                                <div class="icon"><span class="fa fa-money"></span></div>
-                                <h3>Price</h3> <strong><span class="description-price">85</span> DH</strong> 
-                            </div>
-
-                        </div>
+                
+                <div class="day-content col-md-7 bordered_block image_bck" data-color="#FFFFF">
+                    <div class="simple_block text-left">
+                        <h3 class="wow fadeInUp">Acivity title</h3>
+                        <h4 class="subtitle wow fadeInUp" data-wow-delay="0.2s">duration of this activity is 4h 30min</h4>
+                        <p class="wow fadeInUp" data-wow-delay="0.4s">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                        </p>
                     </div>
-                </div>
-            </div>
+                    <div class="simple_block wow fadeInUp">
+                        <ul class="special">
+                            <li>
+                                <i class="fa fa-map-marker"></i>
+                                <h6>Address:</h6>
+                                Cascades d'Ouzoud 
+                            </li>
+                            <li>
+                                <i class="fa fa-shopping-cart"></i>
+                                <h6>Price:</h6>
+                                75 MAD
+                            </li>
+                            <li>
+                                <i class="glyphicon glyphicon-bell"></i>
+                                <h6>Heures d’ouverture:</h6>
+                                    <div><b>Every day :</b> From 9h00 to 20 h00</div>
+                                    <div><b>During summer :</b> From 10h00 to 22h00</div>
+                            </li>
+                            <li>
+                                <i class="fa fa-child"></i>
+                                <h6>Age:</h6>
+                                +12
+                            </li>
 
-        </div>
-    </section>
-
-    <!--Welcome End-->
-
-    <section id="travelInfo" class="section_travelInfo bordered_block grey_border image_bck" data-image="images/white_back.jpg">
-        <div class="container">
-            <div class="col-sm-12" >
-                <div class="row">
-                    <!-- ::: Owl Carousel Start ::: -->
-                    <div id="owl-demo" class="owl-carousel">
-                        <!-- ::: Start item ::: -->
-                        <div class="item">
-                            <div class="item-header">
-                                <i class="fa fa-train"></i>
-                                <h5>Cruise Information<small>Departure and Arrival</small></h5>
-                            </div>
-                            <!-- end item-header -->
-                            <div class="item-info">
-                                <div class="departure">
-                                    <h5 class="travel-departure-title">Royal Cruise 1234</h5>
-                                    <h6>DEPARTURE: <strong class="travel-departure-date">25 JAN, 2018</strong></h6>
-                                    <div class="left">
-                                        <h2 class="travel-departure-time-from">09.30</h2>
-                                        <span class="travel-departure-address-from">Royal Port, USA</span>      
-                                    </div>
-                                    <img class="svg arrPrime" src="images/svg/arrow-right-s.svg" alt="">
-                                    <div class="right">
-                                        <h2 class="travel-departure-time-to">02.30</h2>
-                                        <span class="travel-departure-address-to">Royal Port, UK </span>                   
-                                    </div>
-                                    <div class="clear"></div>
-                                </div>
-                                <!-- end departure -->
-                                <div class="arrival">
-                                    <h5 class="travel-arrival-title">Royal Cruise 1234</h5>
-                                    <h6>DEPARTURE: <strong class="travel-arrival-date">25 JAN, 2018</strong></h6>
-                                    <div class="left">
-                                        <h2 class="travel-arrival-time-from">09.30</h2>
-                                        <span class="travel-arrival-address-from">Royal Port, USA</span>      
-                                    </div>
-                                    <img class="svg arrPrime" src="images/svg/arrow-right-s.svg" alt="">
-                                    <div class="right">
-                                        <h2 class="travel-arrival-time-to">02.30</h2>
-                                        <span class="travel-arrival-address-to">Royal Port, UK </span>                   
-                                    </div>
-                                    <div class="clear"></div>
-                                </div>
-                                <!-- end arrival -->           
-                            </div>
-                            <!-- end item-info -->
-                        </div>
-                        <!-- ::: Start item ::: -->
-                         <!-- ::: Start item ::: -->
-                        <div class="item">
-                            <div class="item-header">
-                                <i class="fa fa-plane"></i>
-                                <h5>Cruise Information<small>Departure and Arrival</small></h5>
-                            </div>
-                            <!-- end item-header -->
-                            <div class="item-info">
-                                <div class="departure">
-                                    <h5>Royal Cruise 1234</h5>
-                                    <h6>DEPARTURE: <strong class=''>25 JAN, 2018</strong></h6>
-                                    <div class="left">
-                                        <h2 class=''>09.30</h2>
-                                        Royal Port, USA                    
-                                    </div>
-                                    <img class="svg arrPrime" src="images/svg/arrow-right-s.svg" alt="">
-                                    <div class="right">
-                                        <h2 class=''>02.30</h2>
-                                        Royal Port, UK                    
-                                    </div>
-                                    <div class="clear"></div>
-                                </div>
-                                <!-- end departure -->
-                                <div class="arrival">
-                                    <h5>Royal Cruise 5678</h5>
-                                    <h6>ARRIVAL: <strong class=''>30 JAN, 2018</strong></h6>
-                                    <div class="left">
-                                        <h2 class=''>03.30</h2>
-                                        Royal Port, USA                    
-                                    </div>
-                                    <img class="svg arrPrime" src="images/svg/arrow-left-s.svg"  alt="">
-                                    <div class="right">
-                                        <h2 class=''>14.30</h2>
-                                        Royal Port, UK                    
-                                    </div>
-                                    <div class="clear"></div>
-                                </div>
-                                <!-- end arrival -->           
-                            </div>
-                            <!-- end item-info -->
-                        </div>
-                        <!-- ::: Start item ::: -->
-                        <div class="item">
-                            <div class="item-header">
-                                <i class="fa fa-ship"></i>
-                                <h5>Cruise Information<small>Departure and Arrival</small></h5>
-                            </div>
-                            <!-- end item-header -->
-                            <div class="item-info">
-                                <div class="departure">
-                                    <h5>Royal Cruise 1234</h5>
-                                    <h6>DEPARTURE: <strong class=''>25 JAN, 2018</strong></h6>
-                                    <div class="left">
-                                        <h2 class=''>09.30</h2>
-                                        Royal Port, USA                    
-                                    </div>
-                                    <img class="svg arrPrime" src="images/svg/arrow-right-s.svg" alt="">
-                                    <div class="right">
-                                        <h2 class=''>02.30</h2>
-                                        Royal Port, UK                    
-                                    </div>
-                                    <div class="clear"></div>
-                                </div>
-                                <!-- end departure -->
-                                <div class="arrival">
-                                    <h5>Royal Cruise 5678</h5>
-                                    <h6>ARRIVAL: <strong class=''>30 JAN, 2018</strong></h6>
-                                    <div class="left">
-                                        <h2 class=''>03.30</h2>
-                                        Royal Port, USA                    
-                                    </div>
-                                    <img class="svg arrPrime" src="images/svg/arrow-left-s.svg"  alt="">
-                                    <div class="right">
-                                        <h2 class=''>14.30</h2>
-                                        Royal Port, UK                    
-                                    </div>
-                                    <div class="clear"></div>
-                                </div>
-                                <!-- end arrival -->           
-                            </div>
-                            <!-- end item-info -->
-                        </div>
-                        <!-- ::: End item ::: -->
-                        <!-- ::: Start item ::: -->
-                        <div class="item">
-                            <div class="item-header">
-                                <i class="fa fa-cutlery"></i>
-                                <h5>HOTEL Information<small>Accomodation and Dining</small></h5>
-                            </div>
-                            <!-- end item-header -->
-                            <div class="item-info">
-                                <div class="info">
-                                    <h5 class="prime">SpiceHub</h5>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipi scing elit. Donec feugiat iaculis tortor molestie. Nunc imperdiet commodo nunc, a porta eros iaculis sit amet iaculis tortor molestie iaculis tortor molestie.</p>
-                                    <a href="http://www.grandhotelinparis.com/" title="" target="_blank"><i class="fa fa-globe"></i> www.grandhotelinparis.com</a>
-                                </div>
-                            </div>
-                            <!-- end item-info -->
-                        </div>
-                        <!-- ::: End item ::: -->
-                        <!-- ::: Start item ::: -->
-                        <div class="item">
-                            <div class="item-header">
-                                <i class="fa fa-cutlery"></i>
-                                <h5>HOTEL Information<small>Accomodation and Dining</small></h5>
-                            </div>
-                            <!-- end item-header -->
-                            <div class="item-info">
-                                <div class="info">
-                                    <h5 class="prime">SpiceHub</h5>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipi scing elit. Donec feugiat iaculis tortor molestie. Nunc imperdiet commodo nunc, a porta eros iaculis sit amet iaculis tortor molestie iaculis tortor molestie.</p>
-                                    <a href="http://www.grandhotelinparis.com/" title="" target="_blank"><i class="fa fa-globe"></i> www.grandhotelinparis.com</a>
-                                </div>
-                            </div>
-                            <!-- end item-info -->
-                        </div>
-                        <!-- ::: End item ::: -->
-                        <!-- ::: Start item ::: -->
-                        <div class="item add-new text-center">
-                            <h5 class="prime"><strong>(Click to add ...)</strong></h5>
-                        </div>
-                        <!-- ::: End item ::: -->
-
+                        </ul>
                     </div>
-                    <!-- ::: end OWL Carousel ::: -->
-                </div>
-                <!-- .row -->
-            </div>
-        </div>
-    </section>
-
-    <!--Gallery maps-->
-    <section class="boxes" id="maps-gallery">
-        <div class="container-fluid">
-
-            <div class="row">
-
-                <div class="col-md-6 bordered_block no-padding gallery">
-                    <div class="editbtn" data-toggle="modal" data-target="#galleryModal">      
-                        <button type="button" class="btn btn-rounded btn-default"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+                    <div class="simple_block white_txt categories image_bck" data-color="#3c4251">
+                        <i class="fa fa-star"></i> 
+                        <span class="">FOOD AND DRINKS, LEISURE</span>
                     </div>
-
-                    <div class="col-sm-6 post-snippet masonry-item no-padding popup-gallery">
-                        <a href="images/build4.jpg" data-size="1500" >
-                            <img alt="" src="images/build4.jpg" />
-                            <span class="potfolio_txt">
-                                <span class="portfolio_cont text-center">
-                                    <span class="portfolio_title">Gallery image</span>
-                                    <span class="portfolio_subtitle">click to see</span>
-                                    <span class="ti ti-zoom-in"></span>
-                                </span>
-                            </span>
-                        </a>
-                        <a href="images/build1.jpg" data-size="500" ></a>
-                        <a href="images/build2.jpg" data-size="800" ></a>
-                        <a href="images/build3.jpg" data-size="1200" ></a>
-
-                    </div>
-
+           
                 </div>
 
-
-                <div class="col-md-6 bordered_block no-padding maps-section">
-                    <div class="editbtn" data-toggle="modal" data-target="#mapsModal">      
-                        <button type="button" class="btn btn-rounded btn-default"><span class="glyphicon glyphicon-edit"></span> Edit</button>
-                    </div>
-                    <div class="col-sm-6 post-snippet masonry-item no-padding maps" data-latitude="33.9715904" data-longitude="-6.849812899999961" >
-                        <a href="javascript:void(0)" >
-                            <div id="maps" style="width: 100%; height: 400px;"></div>
-                            <span class="potfolio_txt">
-                                <span class="portfolio_cont text-center">
-                                    <span class="portfolio_title">Address</span>
-                                    <span class="portfolio_subtitle"><input type="text" class="us3-address" disabled="disabled"/></span>
-                                </span>
-                            </span>
-                        </a>
+                <!--Image-->
+                <div class="day-img col-md-5 image_bck bordered_block height400" data-image="images/build1.jpg">
+                    <div class="simple_block text-left white_txt">
+                         
                     </div>
                 </div>
-
-
+            
             </div>
             <!--Row End-->
 
         </div>
-    </section>
-    <!--Gallery maps-->
+    </div>
+    <!--Text Block End-->
 
-    <!-- others -->
-    <section class="boxes  text-center" id="others">
-        <div class="editbtn" data-toggle="modal" data-target="#othersModal">      
-            <button type="button" class="btn btn-rounded btn-default"><span class="glyphicon glyphicon-edit"></span> Edit</button>
-        </div>
+    <!--Text Block-->
+    <div class="boxes day">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-12 bordered_block grey_border image_bck" data-image="images/white_back.jpg">
-                    <div class="container">
-                        <div class="col-md-12">
-                            <h3 class="wow fadeInUp">Autre chose à savoir</h3>
-                            <h4 class="subtitle  wow fadeInUp">Don'i forget</h4>
-                            <p class=" wow fadeInUp others-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                
+
+                <div class="day-img col-md-5 image_bck bordered_block height400" data-image="images/build2.jpg">
+                    <div class="simple_block text-left white_txt">
+                         
+                    </div>
+                </div>
+
+                <div class="day-content col-md-7 bordered_block image_bck" data-color="#FFFFF">
+                    <div class="simple_block text-left">
+                            <h3 class="wow fadeInUp">Acivity title</h3>
+                            <h4 class="subtitle wow fadeInUp " data-wow-delay="0.2s">duration of this activity is 4h 30min</h4>
+                            <p class="wow fadeInUp" data-wow-delay="0.4s">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                            </p>
                         </div>
-                        
-                    </div>
+                        <div class="simple_block wow fadeInUp">
+                            <ul class="special">
+                                <li>
+                                    <i class="fa fa-map-marker"></i>
+                                    <h6>Address:</h6>
+                                    Cascades d'Ouzoud 
+                                </li>
+                                <li>
+                                    <i class="fa fa-shopping-cart"></i>
+                                    <h6>Price:</h6>
+                                    75 MAD
+                                </li>
+                                <li>
+                                    <i class="glyphicon glyphicon-bell"></i>
+                                    <h6>Heures d’ouverture:</h6>
+                                        <div><b>Every day :</b> From 9h00 to 20 h00</div>
+                                        <div><b>During summer :</b> From 10h00 to 22h00</div>
+                                </li>
+                                <li>
+                                    <i class="fa fa-child"></i>
+                                    <h6>Age:</h6>
+                                    +12
+                                </li>
+
+                            </ul>
+                        </div> 
+                        <div class="simple_block white_txt categories image_bck" data-color="#3c4251">
+                            <i class="fa fa-star"></i> 
+                            <span class="">FOOD AND DRINKS, LEISURE</span>
+                        </div>              
                 </div>
-            </div>
-        </div>
-    </section>
-    <!-- others End -->
-
-
-
-    <!-- Categories-->
-    <section class="boxes" id="categories">
-        <h4 class="sml_abs_title in">Categories</h4>
-        <div class="container-fluid">
             
-            <div class="row">
-                <div class="display-none categorie_block col-md-4 bordered_block bordered_left text-left flex_block image_bck bordered_wht_border height300">
-                    
-                    <!-- Over-->
-                    <div class="over" data-opacity="0.3" data-color="#000"></div>
-                    <div class="image_over image_bck" data-image="images/cat-outdoor.jpg"></div>
-                    <div class="adds_txt">
-                        <h5>Outdoor</h5>
-                        <span class="subtitle">get your freedom</span>
-                    </div> 
-                </div>
-                <div class="categorie_block col-md-4 bordered_block bordered_left text-left flex_block image_bck bordered_wht_border height300">
-                    
-                    <!-- Over-->
-                    <div class="over" data-opacity="0.3" data-color="#000"></div>
-                    <div class="image_over image_bck" data-image="images/cat-food.jpg"></div>
-                    <div class="adds_txt">
-                        <h5>Food and Drinks</h5>
-                        <span class="subtitle">healthy & delicious food</span>
-                    </div> 
-                </div>
-                <div class="categorie_block col-md-4 bordered_block bordered_left text-left flex_block image_bck bordered_wht_border height300">
-                    
-                    <!-- Over-->
-                    <div class="over" data-opacity="0.3" data-color="#000"></div>
-                    <div class="image_over image_bck" data-image="images/cat-leisure.jpg"></div>
-                    <div class="adds_txt">
-                        <h5>Leisure</h5>
-                        <span class="subtitle">fany moment</span>
-                    </div> 
-                </div>
-
-                <div class="categorie_block col-md-4 bordered_block bordered_left text-left flex_block image_bck bordered_wht_border height300">
-                    
-                    <!-- Over-->
-                    <div class="over" data-opacity="0.3" data-color="#000"></div>
-                    <div class="image_over image_bck" data-image="images/cat-museums.jpg"></div>
-                    <div class="adds_txt">
-                        <h5>Museums</h5>
-                        <span class="subtitle">Museums</span>
-                    </div> 
-                </div>
-                <div class="categorie_block col-md-4 bordered_block bordered_left text-left flex_block image_bck bordered_wht_border height300">
-                    
-                    <!-- Over-->
-                    <div class="over" data-opacity="0.3" data-color="#000"></div>
-                    <div class="image_over image_bck" data-image="images/cat-nature.jpg"></div>
-                    <div class="adds_txt">
-                        <h5>Nature</h5>
-                        <span class="subtitle">Hear the Silence</span>
-                    </div> 
-                </div>
-                <div class="categorie_block col-md-4 bordered_block bordered_left text-left flex_block image_bck bordered_wht_border height300">
-                    
-                    <!-- Over-->
-                    <div class="over" data-opacity="0.3" data-color="#000"></div>
-                    <div class="image_over image_bck" data-image="images/cat-kids.jpg"></div>
-                    <div class="adds_txt">
-                        <h5>Family and kids</h5>
-                        <span class="subtitle"enjoy with your family</span>
-                    </div> 
-                </div>
             </div>
-            <!-- Row End-->
+            <!--Row End-->
 
         </div>
-    </section>
-    <!-- Categories End-->
+    </div>
+    <!--Text Block End-->
+</section>
 
 
-    <!-- Footer -->
-    <div class="footer white_txt image_bck">
-
-        <!-- Footer Copyrights -->
-        <div class="footer_end">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <span class="sub">&copy; Copyright 2018 - </span>
+<section id="day2" >
+    <!-- Text Block-->
+    <div class="boxes day">
+        <div class="container-fluid">
+            <div class="row">
+                
+                <div class="day-content col-md-7 bordered_block image_bck" data-color="#FFFFF">
+                    <div class="simple_block text-left">
+                        <h3 class="wow fadeInUp">Acivity title</h3>
+                        <h4 class="subtitle wow fadeInUp " data-wow-delay="0.2s">duration of this activity is 4h 30min</h4>
+                        <p class="wow fadeInUp" data-wow-delay="0.4s">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                        </p>
                     </div>
-                    <div class="col-sm-6 text-right">
-                        <ul class="list-inline social-list">
+                    <div class="simple_block wow fadeInUp">
+                        <ul class="special">
+                            <li>
+                                <i class="fa fa-map-marker"></i>
+                                <h6>Address:</h6>
+                                Cascades d'Ouzoud 
+                            </li>
+                            <li>
+                                <i class="fa fa-shopping-cart"></i>
+                                <h6>Price:</h6>
+                                75 MAD
+                            </li>
+                            <li>
+                                <i class="glyphicon glyphicon-bell"></i>
+                                <h6>Heures d’ouverture:</h6>
+                                    <div><b>Every day :</b> From 9h00 to 20 h00</div>
+                                    <div><b>During summer :</b> From 10h00 to 22h00</div>
+                            </li>
+                            <li>
+                                <i class="fa fa-child"></i>
+                                <h6>Age:</h6>
+                                +12
+                            </li>
 
-                            <li>
-                                <a href="#" data-toggle="tooltip" data-placement="top" title="Facebook">
-                                    <i class="ti-facebook"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" data-toggle="tooltip" data-placement="top" title="Twitter">
-                                    <i class="ti-twitter-alt"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" data-toggle="tooltip" data-placement="top" title="Dribbble">
-                                    <i class="ti-dribbble"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" data-toggle="tooltip" data-placement="top" title="Vimeo">
-                                    <i class="ti-vimeo-alt"></i>
-                                </a>
-                            </li>
                         </ul>
                     </div>
-                </div>
-            </div>
-        </div>
-        <!-- Copyrights End -->
-
-
-    </div>
-    <!-- Footer End -->
-
-    <!-- Modal -->
-
-    <!-- Intro -->
-    <div class="modal fade" id="introModal" tabindex="-1" role="dialog" aria-labelledby="introModal">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-
-                    <div class="bs-callout " id="callout-help-text-accessibility">
-                        <div class="form-horizontal">
-                            <div class="form-group  form-group-sm">
-                                <label class="col-sm-2 control-label" for="modal-intro-place">Place</label>
-                                <div class="col-sm-10">
-                                    <input class="form-control" type="text" id="modal-intro-place" placeholder="add a remarkable place..."/>
-                                </div>
-                            </div>
-                            <div class="form-group  form-group-sm">
-                                <label class="col-sm-2 control-label" for="modal-intro-city">City</label>
-                                <div class="col-sm-10">
-                                    <input class="form-control" type="text" id="modal-intro-city" placeholder="add city..."/>
-                                </div>
-                            </div>
-                            <div class="form-group  form-group-sm">
-                                <label class="col-sm-2 control-label" for="modal-intro-slogan">Slogan </label>
-                                <div class="col-sm-10">
-                                    <input class="form-control" type="text" id="modal-intro-slogan" placeholder="add sloan..."/>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="simple_block white_txt categories image_bck" data-color="#3c4251">
+                        <i class="fa fa-star"></i> 
+                        <span class="">FOOD AND DRINKS, LEISURE</span>
                     </div>
-                    <div class="dropzone" id="intro-awesome-dropzone">
-                        <div class="fallback">
-                            <input type="file" type="file" multiple=""/>
-                        </div>
-                        <div class="dz-message needsclick">
-                            Drop files here to upload Background image.<br />
-                            <span class="note needsclick"><strong>(or click)</strong></span>
-                          </div>
+           
+                </div>
+
+                <!--Image-->
+                <div class="day-img col-md-5 image_bck bordered_block height400" data-image="images/build1.jpg">
+                    <div class="simple_block text-left white_txt">
+                         
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary save">Save changes</button>
-                </div>
+            
             </div>
+            <!--Row End-->
+
         </div>
     </div>
+    <!--Text Block End-->
+</section>
 
-    <!-- description -->
-    <div class="modal fade" id="descriptionModal" tabindex="-1" role="dialog" aria-labelledby="descriptionModal">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
 
-                    <div class="bs-callout " id="callout-help-text-accessibility">
-                        <div class="form-horizontal">
-                            <div class="form-group  form-group-sm">
-                                <label class="col-sm-2 control-label" for="modal-description-desc">Description</label>
-                                <div class="col-sm-10">
-                                    <textarea class="form-control" rows="5" id="modal-description-desc" placeholder="add a description..."></textarea>
-                                </div>
-                            </div>
-                        </div>
+<section id="day3" >
+    <!--Text Block-->
+    <div class="boxes day">
+        <div class="container-fluid">
+            <div class="row">
+                
+
+                <div class="day-img col-md-5 image_bck bordered_block height400" data-image="images/build2.jpg">
+                    <div class="simple_block text-left white_txt">
+                         
                     </div>
-                    <div class="bs-callout " id="callout-help-text-accessibility">
-                        <div class="form-horizontal">
-                        	<div class="form-group  form-group-sm">
-                                <label class="col-sm-2 control-label" for="modal-description-date">Date</label>
-                                <div class="col-sm-10">
-                                    <div class='input-group date' id='modal-description-date'>
-                                        <input type='text' class="form-control" />
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-calendar"></span>
-                                        </span>
+                </div>
+
+                <div class="day-content col-md-7 bordered_block image_bck" data-color="#FFFFF">
+                    <div class="simple_block text-left">
+                            <h3 class="wow fadeInUp">Acivity title</h3>
+                            <h4 class="subtitle wow fadeInUp " data-wow-delay="0.2s">duration of this activity is 4h 30min</h4>
+                            <p class="wow fadeInUp " data-wow-delay="0.4s">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                            </p>
+                        </div>
+                        <div class="simple_block wow fadeInUp ">
+                            <ul class="special">
+                                <li>
+                                    <i class="fa fa-map-marker"></i>
+                                    <h6>Address:</h6>
+                                    Cascades d'Ouzoud 
+                                </li>
+                                <li>
+                                    <i class="fa fa-shopping-cart"></i>
+                                    <h6>Price:</h6>
+                                    75 MAD
+                                </li>
+                                <li>
+                                    <i class="glyphicon glyphicon-bell"></i>
+                                    <h6>Heures d’ouverture:</h6>
+                                        <div><b>Every day :</b> From 9h00 to 20 h00</div>
+                                        <div><b>During summer :</b> From 10h00 to 22h00</div>
+                                </li>
+                                <li>
+                                    <i class="fa fa-child"></i>
+                                    <h6>Age:</h6>
+                                    +12
+                                </li>
+
+                            </ul>
+                        </div> 
+                        <div class="simple_block white_txt categories image_bck" data-color="#3c4251">
+                            <i class="fa fa-star"></i> 
+                            <span class="">FOOD AND DRINKS, LEISURE</span>
+                        </div>              
+                </div>
+            
+            </div>
+            <!--Row End-->
+
+        </div>
+    </div>
+    <!--Text Block End-->
+</section>
+
+
+<!-- Intro -->
+<div class="modal fade" id="activityModal" tabindex="-1" role="dialog" aria-labelledby="activityModal">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content">
+            
+            <div class="modal-header">
+                <button id="addNewActivity" type="button" class="add btn btn-rounded btn-default"><span class="glyphicon glyphicon-plus"></span> Add</button>
+            </div>
+            <div class="modal-body">
+
+                <div class="panel-group" id="sortable" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingOne">
+                            <div class="title">
+                                <h4 class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#act1" aria-expanded="true" aria-controls="collapseOne">
+                                    Activity 1
+                                    </a>
+                                </h4>
+                            </div>
+                            <button type="button" class="delete"><span>&times;</span></button>
+                        </div>
+                        <div id="act1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="panel-body">
+                                <div class="form-horizontal">
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><a data-toggle="tab" href="#descriptionTab">Description</a></li>
+                                        <li><a data-toggle="tab" href="#timeTab">Time</a></li>
+                                        <li><a data-toggle="tab" href="#otherTab">Other</a></li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div id="descriptionTab" class="tab-pane fade in active">
+                                            <div class="form-group  form-group-sm">
+                                                <label class="col-sm-2 control-label" for="modal-acivity-name">Activity</label>
+                                                <div class="col-sm-8">
+                                                    <input class="form-control" type="text" id="modal-acivity-name" placeholder="add a title of acivity here..."/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group  form-group-sm">
+                                                <label class="col-sm-2 control-label" for="modal-acivity-desc">Description</label>
+                                                <div class="col-sm-8">
+                                                    <textarea class="form-control" rows="3" id="modal-acivity-desc" placeholder="add a description..."></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group  form-group-sm">
+                                                <label class="col-sm-2 control-label" for="modal-acivity-day">Day</label>
+                                                <div class="col-sm-8">
+                                                    <div class="input-group">
+                                                    <input type="number" id="modal-acivity-day" class="form-control" placeholder="1" value="1" pattern="\d*" min="1" max="5">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="timeTab" class="tab-pane fade">
+                                            <div class="form-group  form-group-sm">
+                                                <label class="col-sm-2 control-label" for="modal-acivity-duration">Duration</label>
+                                                <div class="col-sm-8">
+                                                    <div class="col-sm-12">
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" id="modal-acivity-duration">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group  form-group-sm">
+                                                <label class="col-sm-2 control-label" for="modal-acivity-time">Heurs :</label>
+                                                <div class='col-sm-8'>
+                                                    <div class='col-sm-6'>
+                                                        <div class="input-group" id="modal-acivity-time1">
+                                                            <input type='text' class="form-control" />
+                                                            <span class="input-group-addon">
+                                                                <span class="glyphicon glyphicon-time"></span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class='col-sm-6'>
+                                                       <div class="input-group" id="modal-acivity-time2" >
+                                                            <input type='text' class="form-control"/>
+                                                            <span class="input-group-addon">
+                                                                <span class="glyphicon glyphicon-time"></span>
+                                                            </span>
+                                                        </div> 
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group  form-group-sm">
+                                                <label class="col-sm-2 control-label" for="modal-acivity-time-summer">Summer :</label>
+                                                <div class='col-sm-8'>
+                                                    <div class='col-sm-6'>
+                                                        <div class="input-group" id="modal-acivity-time1-summer" >
+                                                            <input type='text' class="form-control" />
+                                                            <span class="input-group-addon">
+                                                                <span class="glyphicon glyphicon-time"></span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class='col-sm-6'>
+                                                        <div class="input-group" id="modal-acivity-time2-summer">
+                                                            <input type='text' class="form-control" />
+                                                            <span class="input-group-addon">
+                                                                <span class="glyphicon glyphicon-time"></span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="otherTab" class="tab-pane fade">
+                                            <div class="form-group  form-group-sm">
+                                                <label class="col-sm-2 control-label" for="modal-acivity-address">Address</label>
+                                                <div class="col-sm-8">
+                                                    <input class="form-control" type="text" id="modal-acivity-adress" placeholder="add adress..."/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group  form-group-sm">
+                                                <label class="col-sm-2 control-label" for="modal-acivity-price">Price</label>
+                                                <div class="col-sm-8">
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" id="modal-acivity-price" placeholder="add your trip price ..." aria-describedby="basic-price" pattern="\d*" min="0">
+                                                        <div class="input-group-addon" id="basic-price">$</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group  form-group-sm">
+                                                <label class="col-sm-2 control-label" for="modal-acivity-age">Age</label>
+                                                <div id="modal-acivity-age" class="btn-group col-sm-10" data-toggle="buttons">
+                                                    <label class="btn btn-default btn-rounded">
+                                                        <input type="radio" name="age" data-value="3" autocomplete="off"> +3
+                                                    </label>
+                                                    <label class="btn btn-default btn-rounded">
+                                                        <input type="radio" name="age" data-value="5" autocomplete="off"> +5
+                                                    </label>
+                                                    <label class="btn btn-default btn-rounded">
+                                                        <input type="radio" name="age" data-value="12" autocomplete="off"> +12
+                                                    </label>
+                                                    <label class="btn btn-default btn-rounded">
+                                                        <input type="radio" name="age" data-value="18" autocomplete="off"> +18
+                                                    </label>
+                                                    <label class="btn btn-default btn-rounded active">
+                                                        <input type="radio" name="age" data-value="All" autocomplete="off" checked> All
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group  form-group-sm">
+                                                <label class="col-sm-2 control-label" for="modal-acivity-categories">Categorie</label>
+                                                <div id="modal-acivity-categories" class="btn-group col-sm-10" data-toggle="buttons">
+                                                    <label class="btn btn-default btn-rounded">
+                                                        <input type="checkbox" name="categories[]" data-value="Outdoor" autocomplete="off"> Outdoor
+                                                    </label>
+                                                    <label class="btn btn-default btn-rounded">
+                                                        <input type="checkbox" name="categories[]" data-value="Food and Drinks" autocomplete="off"> Food and Drinks
+                                                    </label>
+                                                    <label class="btn btn-default btn-rounded">
+                                                        <input type="checkbox" name="categories[]" data-value="Leisure" autocomplete="off"> Leisure
+                                                    </label>
+                                                    <label class="btn btn-default btn-rounded">
+                                                        <input type="checkbox" name="categories[]" data-value="Museums" autocomplete="off"> Museums
+                                                    </label>
+                                                    <label class="btn btn-default btn-rounded">
+                                                        <input type="checkbox" name="categories[]" data-value="Nature" autocomplete="off"> Nature
+                                                    </label>
+                                                    <label class="btn btn-default btn-rounded">
+                                                        <input type="checkbox" name="categories[]" data-value="Family and kids" autocomplete="off"> Family and kids
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group  form-group-sm">
-                                <label class="col-sm-2 control-label" for="modal-description-duration">Duration </label>
-                                <div class="col-sm-10">
-                                    <div class="input-group">
-                                    <input type="number" id="modal-description-duration" class="form-control" placeholder="add your trip duration..." aria-describedby="basic-days" pattern="\d*" min="1">
-                                        <span class="input-group-addon" id="basic-days">Days</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group  form-group-sm">
-                                <label class="col-sm-2 control-label" for="modal-description-price">Price </label>
-                                <div class="col-sm-10">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" id="modal-description-price" placeholder="add your trip price ..." aria-describedby="basic-price" pattern="\d*" min="0">
-                                        <div class="input-group-addon" id="basic-price">$</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group  form-group-sm">
-                            	<label class="col-sm-2 control-label" for="modal-description-age">Age</label>
-                                <div id="modal-description-age" class="btn-group col-sm-10" data-toggle="buttons">
-    								<label class="btn btn-default btn-rounded">
-    									<input type="radio" name="age" data-value="3" autocomplete="off"> +3
-    								</label>
-    								<label class="btn btn-default btn-rounded">
-    									<input type="radio" name="age" data-value="5" autocomplete="off"> +5
-    								</label>
-    								<label class="btn btn-default btn-rounded">
-    									<input type="radio" name="age" data-value="12" autocomplete="off"> +12
-    								</label>
-    								<label class="btn btn-default btn-rounded">
-    									<input type="radio" name="age" data-value="18" autocomplete="off"> +18
-    								</label>
-    								<label class="btn btn-default btn-rounded active">
-    									<input type="radio" name="age" data-value="All" autocomplete="off" checked> All
-    								</label>
-    							</div>
-                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary save">Save changes</button>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary save">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Footer -->
+<div class="footer white_txt image_bck">
+
+    <!-- Footer Copyrights -->
+    <div class="footer_end">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <span class="sub">&copy; Copyright 2018 - </span>
+                </div>
+                <div class="col-sm-6 text-right">
+                    <ul class="list-inline social-list">
+
+                        <li>
+                            <a href="#" data-toggle="tooltip" data-placement="top" title="Facebook">
+                                <i class="ti-facebook"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" data-toggle="tooltip" data-placement="top" title="Twitter">
+                                <i class="ti-twitter-alt"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" data-toggle="tooltip" data-placement="top" title="Dribbble">
+                                <i class="ti-dribbble"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" data-toggle="tooltip" data-placement="top" title="Vimeo">
+                                <i class="ti-vimeo-alt"></i>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
+    <!-- Copyrights End -->
 
-    <!-- Galeries -->
-    <div class="modal fade" id="galleryModal" tabindex="-1" role="dialog" aria-labelledby="galleryModal">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="dropzone" id="gallery-awesome-dropzone">
-                        <div class="fallback">
-                            <input type="file" type="file" multiple=""/>
-                        </div>
-                        <div class="dz-message needsclick">
-                            Drop files here to upload images.<br />
-                            <span class="note needsclick"><strong>(or click)</strong></span>
-                          </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary save">Start uplade</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- maps -->
-    <div class="modal fade" id="mapsModal" tabindex="-1" role="dialog" aria-labelledby="mapsModal">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="bs-callout " id="callout-help-text-accessibility">
-                        <div class="form-horizontal">
-                            <div class="form-group  form-group-sm">
-                                <label class="col-sm-2 control-label" for="modal-maps-address">Address</label>
-                                <div class="col-sm-10">
-                                    <input class="form-control" type="text" id="modal-maps-address"/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+</div>
+<!-- Footer End -->
 
-                    <div class="bs-callout bs-callout-danger" id="callout-help-text-accessibility">
-                        <div id="editMaps" style="width: 100%; height: 175px;"></div>
-                    </div>
 
-                    <div class="bs-callout " id="callout-help-text-accessibility">
-                        <div class="form-horizontal">
-                            
-                            <div class="form-group  form-group-sm">
-                                <label class="col-sm-2 control-label" for="modal-maps-latitude">latitude</label>
-                                <div class="col-sm-4">
-                                    <input class="form-control" type="text" id="modal-maps-latitude"/>
-                                </div>
-                                <label class="col-sm-2 control-label" for="modal-maps-longitude">longitude</label>
-                                <div class="col-sm-4">
-                                    <input class="form-control" type="text" id="modal-maps-longitude"/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary save">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Othres -->
-    <div class="modal fade" id="othersModal" tabindex="-1" role="dialog" aria-labelledby="othersModal">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="bs-callout " id="callout-help-text-accessibility">
-                        <div class="form-horizontal">
-                            <div class="form-group  form-group-sm">
-                                <label class="col-sm-2 control-label" for="modal-others-desc">Text</label>
-                                <div class="col-sm-10">
-                                    <textarea class="form-control" rows="6" id="modal-othres-desc" placeholder="add a description..."></textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bs-callout " id="callout-help-text-accessibility">
-                        <div class="form-horizontal">
-                            <div class="form-group  form-group-sm">
-                            	<label class="col-sm-2 control-label" for="modal-others-categories">Categorie</label>
-                                <div id="modal-others-categories" class="btn-group col-sm-10" data-toggle="buttons">
-    								<label class="btn btn-default btn-rounded">
-    									<input type="checkbox" name="cat[]" data-value="Outdoor" autocomplete="off"> Outdoor
-    								</label>
-    								<label class="btn btn-default btn-rounded">
-    									<input type="checkbox" name="categories[]" data-value="Food and Drinks" autocomplete="off"> Food and Drinks
-    								</label>
-    								<label class="btn btn-default btn-rounded">
-    									<input type="checkbox" name="categories[]" data-value="Leisure" autocomplete="off"> Leisure
-    								</label>
-    								<label class="btn btn-default btn-rounded">
-    									<input type="checkbox" name="categories[]" data-value="Museums" autocomplete="off"> Museums
-    								</label>
-    								<label class="btn btn-default btn-rounded">
-                                        <input type="checkbox" name="categories[]" data-value="Nature" autocomplete="off"> Nature
-                                    </label>
-                                    <label class="btn btn-default btn-rounded">
-                                        <input type="checkbox" name="categories[]" data-value="Family and kids" autocomplete="off"> Family and kids
-                                    </label>
-    							</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary save">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
 </div>
 <!-- Page End -->
+
+
 
     <!-- JQuery -->
     <script src="js/jquery-1.11.3.min.js"></script>
@@ -816,12 +639,24 @@
     <!-- datepicker JS -->
     <script src="js/moment.min.js"></script>
     <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/jquery-duration-picker.js"></script>
 
     <!-- Dropzone -->
     <script src="js/dropzone.js"></script>
     <!-- Theme JS -->
     <script src="js/script.js"></script>
 
+
+<script>
+  $( function() {
+    $( "#sortable" ).sortable();
+    $( "#sortable" ).disableSelection();
+  } );
+  </script>
+
+
+
 </body>
 
+<!-- Mirrored from berg.maskandesign.com/html/02_07_multipage_arch.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 09 Oct 2017 19:59:45 GMT -->
 </html>

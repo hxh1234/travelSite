@@ -4435,6 +4435,7 @@ h1 small {
 }
 
 .day ul {
+	overflow: auto;
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -4451,10 +4452,14 @@ h1 small {
 
 .day .day-content {
 	font-size: 0.9em;
+	padding: 50px 0 0 0;
+}
+.day .day-img {
+	padding: 50px 0 0 0;
 }
 
 .day ul li:nth-child(2), .day ul li:nth-child(4) {
-	width: 40%
+	width: 40%;
 }
 
 
@@ -4471,6 +4476,19 @@ h1 small {
     font-size: 1.15em;
 }
 
+.day .day-content .categories {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+.day .day-content .categories i {
+	font-size: 1.65em;
+}
+
+.day .day-content .categories span {
+	padding-left: 1.65em;
+	font-weight: 900;
+}
 
 #activityModal .delete {
 	-webkit-appearance: none;
@@ -4720,6 +4738,11 @@ h1 small {
 		margin-left: auto!important;
 		margin-right: auto!important;
 	}
+
+	.day ul li:nth-child(2), .day ul li:nth-child(4) {
+		width: 100%;
+	}
+
 
 	.breadcrumbs {
 		text-align: left;
