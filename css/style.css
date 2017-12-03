@@ -4372,6 +4372,10 @@ h1 small {
     font-size: 1.15em;
 }
 
+.home_page header {
+	width: 125px;
+}
+
 .owl-carousel .item .item-info .departure {
     border-bottom: 1px dashed rgba(0, 0, 0, 0.3);
     padding: 1.35em 1.85em 1.85em;
@@ -4452,16 +4456,27 @@ h1 small {
 
 .day .day-content {
 	font-size: 0.9em;
-	padding: 50px 0 0 0;
+	padding: 0;
 }
 .day .day-img {
-	padding: 50px 0 0 0;
+	padding: 0;
+}
+
+.day .day-img .gallery {
+	height: 50%;
+}
+
+.day .day-img .gallery img {
+	width: 0%;
 }
 
 .day ul li:nth-child(2), .day ul li:nth-child(4) {
 	width: 40%;
 }
 
+.day .day-content .description_block{
+	padding-top: 50px;
+}
 
 .day ul li i {
     position: absolute;
